@@ -1,8 +1,5 @@
 package State.Commands;
 
-import State.Command;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class CommandsDirector extends Command {

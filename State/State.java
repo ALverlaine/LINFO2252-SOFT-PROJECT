@@ -1,10 +1,10 @@
 package State;
 
+import State.Commands.Command;
 import State.Commands.CommandsDirector;
 import State.Users.User.User;
 import State.Users.Users;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class State {
@@ -27,16 +27,7 @@ public class State {
     }
 
     public void connect(User user){
-        if(Objects.equals(this.currStateConnexion, "Not connected")){
-            if(users.exists(user)){
-                this.currUser = user;
-                this.currStateConnexion = "Connected";
-            }else{
-                User NewUser = new User(user.name, user.password);
-                users.users.add(NewUser);
-            }
-
-        }
+        if(user)
     }
 
     public void setExit(){

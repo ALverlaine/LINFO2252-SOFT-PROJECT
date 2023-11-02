@@ -1,6 +1,6 @@
 package State.DynamicCommands;
 
-import State.Command;
+import State.Commands.Command;
 
 public abstract class DynamicCommands extends Command {
     public DynamicCommands() {

@@ -1,4 +1,4 @@
-package State;
+package State.Commands;
 
 public class Command {
     private boolean state;
