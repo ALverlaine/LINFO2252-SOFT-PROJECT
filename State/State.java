@@ -2,43 +2,64 @@ package State;
 
 import State.Commands.Command;
 import State.Commands.CommandsDirector;
-import State.Users.User.User;
-import State.Users.Users;
+import State.Exceptions.AlreadyConnected;
+import State.Exceptions.NoUserConnected;
+import State.Exceptions.UserDoesntExist;
+import State.Models.User;
 
+import java.util.Collections;
+import java.util.Map;
 import java.util.Objects;
 
 public class State {
-    String currState;
-    User currUser;
-    Users users;
-    String currStateConnexion = "Not connected";
+
+    private static State instance = null;
+    private Map<String, User> users;
+    User connectedUser;
     CommandsDirector commands;
 
-    public State() {
-        this.currState = "Running";
+    private State() {
     }
 
-    public boolean isRunning(){
-        return Objects.equals(this.currState, "Running");
+    public static State getInstance() {
+        if (instance == null) instance = new State();
+        return instance;
+    }
+
+    public Map<String, User> getUsers() {
+        return Collections.unmodifiableMap(users);
+    }
+
+    public User getUser(String username) throws UserDoesntExist {
+        User user = users.get(username);
+        if (user == null) throw new UserDoesntExist();
+        return user;
+    }
+
+
+    public User getConnectedUser() throws NoUserConnected {
+        if (connectedUser != null) return connectedUser;
+        else throw new NoUserConnected();
     }
 
     public boolean isConnected(){
-        return Objects.equals(this.currStateConnexion, "Connected");
+        return connectedUser != null;
     }
 
-    public void connect(User user){
-        if(user)
+    public boolean userExists(String username) {
+        return users.get(username) != null;
     }
 
-    public void setExit(){
-        this.currState = "Exit";
+    public void setConnectedUser(User user) {
+        connectedUser = user;
     }
 
+    public void addUser(User user) {
+        users.put(user.name(), user);
+    }
 
     public Command getCommand(){
         return commands;
     }
-
-
 
 }

@@ -1,31 +1,35 @@
 package State.Controllers;
 
-import State.AppState;
+import State.Exceptions.NoUserConnected;
 import State.Models.Chat;
 import State.Models.Message;
 import State.Models.User;
 import State.Views.ChatView;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import State.State;
 
-public class ChatController {
+public class ChatController extends AbstractController {
 
-    AppState appstate;
+    State state = State.getInstance();
     private final ChatView view;
     private Chat chat;
 
-    public ChatController(ChatView view) {
+    public ChatController(ChatView view, Chat chat) {
         this.view = view;
+        this.chat = chat;
     }
 
-    public void addMessage(String content) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    public void sendMessage(String content) throws NoUserConnected {
         Date date = new Date();
-        List<User> users = chat.getUsers();
-        //NEED TO GET SENDER FROM APPSTATE HERE BUT I HAVE TO GO
-        //Message message = new Message(chat.getUsers());
-        //chat.addMessage();
+        List<User> users = chat.getChatUsers();
+        User sender = state.getConnectedUser();
+
+        User receiver = users.get(0).equals(sender) ? users.get(1) : users.get(0);
+        Message message = new Message(sender, receiver, content, date);
+
+        chat.addMessage(message);
+
+        view.displayNewMessage(message);
     }
 }

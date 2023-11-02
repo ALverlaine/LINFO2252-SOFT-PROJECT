@@ -10,12 +10,11 @@ public class Chat {
 
     private User user1;
     private User user2;
+    List<Message> messageList;
 
-    public List<User> getUsers() {
+    public List<User> getChatUsers() {
         return Collections.unmodifiableList(Arrays.asList(user1, user2));
     }
-
-    List<Message> messageList;
 
     public Message findMessage(String messageToFind) throws NoMessagesFound {
         return null;
