@@ -1,8 +1,16 @@
 package State.Models;
 
-public record User(String name, String password) {
+
+
+public class User {
+    public String name;
+    public String password;
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
     @Override
-    public String toString() {
+    public String toString () {
         return "Username: " + name + "\n";
     }
 }

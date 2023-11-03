@@ -25,7 +25,7 @@ public class AuthService {
 
     public User login(String username, String password) throws UserDoesntExist, IncorrectPassword {
         User user = state.getUser(username);
-        if (Objects.equals(password, user.password())) return user;
+        if (Objects.equals(password, user.password)) return user;
         else throw new IncorrectPassword();
     }
 

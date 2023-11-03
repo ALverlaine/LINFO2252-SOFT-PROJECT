@@ -15,10 +15,10 @@ public class State {
 
     private static State instance = null;
     private Map<String, User> users;
-    User connectedUser;
+    public User connectedUser;
     CommandsDirector commands;
 
-    private State() {
+    public State() {
     }
 
     public static State getInstance() {
@@ -55,7 +55,7 @@ public class State {
     }
 
     public void addUser(User user) {
-        users.put(user.name(), user);
+        users.put(user.name, user);
     }
 
     public Command getCommand(){
