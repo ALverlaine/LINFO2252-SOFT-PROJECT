@@ -23,4 +23,8 @@ public class Chat {
     public void addMessage(Message message) {
         messageList.add(message);
     }
+
+    public List<Message> getMessages() {
+        return messageList;
+    }
 }

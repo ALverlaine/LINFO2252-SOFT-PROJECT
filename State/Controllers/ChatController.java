@@ -18,6 +18,7 @@ public class ChatController extends AbstractController {
     public ChatController(ChatView view, Chat chat) {
         this.view = view;
         this.chat = chat;
+        view.displayAllMessages(chat.getMessages());
     }
 
     public void sendMessage(String content) throws NoUserConnected {

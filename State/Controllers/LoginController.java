@@ -23,9 +23,11 @@ public class LoginController extends AbstractController {
         }
         catch (UserDoesntExist e1) {
             // Show it in view
+            view.loginUnsuccessful(e1);
         }
         catch (IncorrectPassword e2) {
             // Do the same
+            view.loginUnsuccessful(e2);
         }
     }
 }

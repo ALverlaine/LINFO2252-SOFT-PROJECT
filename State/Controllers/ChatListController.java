@@ -3,13 +3,19 @@ package State.Controllers;
 import State.Models.Chat;
 import State.Views.ChatListView;
 
-import java.util.List;
+import java.util.Map;
 
 public class ChatListController {
-    private List<Chat> chats;
+    private Map<String, Chat> chats;
     private ChatListView view;
 
-    public ChatListController(ChatListView view) {
+    public ChatListController(ChatListView view, Map<String, Chat> chats) {
         this.view = view;
+        this.chats = chats;
+        view.displayAllChats(chats);
+    }
+
+    public void goToChat(String username) {
+
     }
 }

@@ -6,6 +6,7 @@ import State.Models.Chat;
 import State.Models.Message;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ChatView extends AbstractView {
     private final ChatController controller;
@@ -26,6 +27,10 @@ public class ChatView extends AbstractView {
 
     public void displayNewMessage(Message message) {
         //Print new message info
+    }
+
+    public void displayAllMessages(List<Message> message) {
+
     }
 
 

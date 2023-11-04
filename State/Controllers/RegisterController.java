@@ -23,8 +23,9 @@ public class RegisterController extends AbstractController{
             state.addUser(user);
             state.setConnectedUser(user);
         }
-        catch ( UserExists e2) {
+        catch ( UserExists e) {
             // Show in view
+            view.registerUnsuccessful(e);
         }
     }
 }

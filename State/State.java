@@ -2,19 +2,20 @@ package State;
 
 import State.Commands.Command;
 import State.Commands.CommandsDirector;
-import State.Exceptions.AlreadyConnected;
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
+import State.Models.Chat;
 import State.Models.User;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class State {
 
     private static State instance = null;
     private Map<String, User> users;
+    private Map<String, List<Map<String, Chat>>> chats;
     public User connectedUser;
     CommandsDirector commands;
 

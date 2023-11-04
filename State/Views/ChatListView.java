@@ -3,20 +3,25 @@ package State.Views;
 import State.Controllers.ChatListController;
 import State.Models.Chat;
 
+import java.util.Map;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
 
 public class ChatListView extends AbstractView {
-    private final ChatListController controller;
-    List<Chat> chats;
 
+    private final ChatListController controller;
     public ChatListView(HashMap<String, Object> params) {
         super(params);
-        List<Chat> chats = (List<Chat>) params.get("chats");
-        this.controller = new ChatListController(this);
+        Map<String, Chat> chats = (Map<String, Chat>) params.get("chats");
+        this.controller = new ChatListController(this, chats);
     }
 
     @Override
     public void initialize() {}
+
+    public void selectChat() {
+        //Let user choose from input
+    }
+
+    public void displayAllChats(Map<String, Chat> chats) {
+    }
 }
