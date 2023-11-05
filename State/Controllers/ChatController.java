@@ -28,11 +28,13 @@ public class ChatController extends AbstractController {
     public void parseInput(int input) {
         final int SEND = 1;
         final int SEE = 2;
+        final int SEE_NEW = 3;
         final int BACK = 4;
 
         switch (input) {
             case SEND -> view.sendMessage();
             case SEE -> view.displayAllMessages(chat.getMessages());
+            case SEE_NEW -> view.displayNewMessage(chat.getNewMessages());
             case BACK -> view.goBack();
         }
     }
