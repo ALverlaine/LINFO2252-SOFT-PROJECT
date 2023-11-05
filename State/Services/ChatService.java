@@ -12,12 +12,14 @@ import java.util.Map;
 
 
 public class ChatService {
-    private Map<String, Map<String, Chat>> chats;
+    private Map<String, Map<String, Chat>> chats = new HashMap<>();
     private State state = State.getInstance();
     private static ChatService instance = null;
     private Chat selectedChat;
 
-    private ChatService() {}
+    private ChatService() {
+
+    }
 
     public static ChatService getInstance() {
         if (instance == null) instance = new ChatService();

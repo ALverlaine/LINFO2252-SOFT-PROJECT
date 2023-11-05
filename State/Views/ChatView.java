@@ -63,8 +63,9 @@ public class ChatView extends AbstractView {
                 }
                 displayOptions();
             case 2:
-                if(controller.getMessages() != null && controller.getMessages().getMessages() != null) displayAllMessages(controller.getMessages().getMessages());
-                else System.out.println("There is no messages");
+                //if(controller.getMessages() != null && controller.getMessages().getMessages() != null) displayAllMessages(controller.getMessages().getMessages());
+                //else System.out.println("There is no messages");
+                displayAllMessages(controller.getMessages().getMessages());
                 displayOptions();
             case 3:
                 displayNewMessage(controller.getMessages().getMessages().get(controller.getMessages().getMessages().size()-1));

@@ -2,6 +2,7 @@ package State.Models;
 
 import State.Exceptions.NoMessagesFound;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +11,7 @@ public class Chat {
 
     private final User user1;
     private final User user2;
-    List<Message> messageList;
+    List<Message> messageList = new ArrayList<>();
 
     public Chat(User user1, User user2) {
         this.user1 = user1;
