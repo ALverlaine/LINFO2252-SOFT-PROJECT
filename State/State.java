@@ -1,7 +1,6 @@
 package State;
 
-import State.Commands.Command;
-import State.Commands.CommandsDirector;
+import State.Controllers.AbstractController;
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
 import State.Models.Chat;
@@ -10,6 +9,7 @@ import State.Services.AuthService;
 import State.Services.ChatService;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +19,12 @@ public class State {
     private Map<String, User> users;
     private Map<String, List<Map<String, Chat>>> chats;
     public User connectedUser;
-    CommandsDirector commands;
+    private HashMap<String, AbstractController> commands;
+    private AbstractController command;
+    private String inputCMD;
+    private String inputArgs;
 
-    private State() {
+    public State() {
         ChatService chatService = ChatService.getInstance();
         AuthService authService = AuthService.getInstance();
     }
@@ -67,9 +70,26 @@ public class State {
     public void addUser(User user) {
         users.put(user.getName(), user);
     }
-
-    public Command getCommand(){
+    //------------------------------------------------------------------------------------------------------------------
+    public HashMap<String, AbstractController> getCommand(){
         return commands;
     }
+    public void setCommand(HashMap<String, AbstractController> commands){
+        this.commands = commands;
+    }
+    public void setCMD(String[] command){
+        this.inputCMD = command[0];
+        this.inputArgs = command.length > 1 ? command[1] : null;
+    }
+    public void setOneCommand(AbstractController command){
+        this.command = command;
+    }
+    public AbstractController getOneCommand(){
+        return this.command;
+    }
+    public String getInputCMD(){
+        return this.inputCMD;
+    }
+
 
 }
