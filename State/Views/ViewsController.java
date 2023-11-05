@@ -9,7 +9,7 @@ public class ViewsController {
 
 
     public ViewsController() {
-        viewMap.put(ViewOption.Chat, new AuthView());
+        viewMap.put(ViewOption.CHAT, new ChatView());
         //viewMap.put(ViewOption.Chat_list, new ChatListView());
         //viewMap.put(ViewOption.Contact, new ContactView());
         displayOption();
@@ -20,9 +20,13 @@ public class ViewsController {
         for(ViewOption option : ViewOption.values()) {
             System.out.println(option);
         }
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().toUpperCase();
 
         try{
+            if(input.equals("EXIT")){
+                System.out.println("Exiting...");
+                System.exit(0);
+            }
             ViewOption viewOption = ViewOption.valueOf(input);
             AbstractView view = viewMap.get(viewOption);
             view.run();
@@ -30,6 +34,5 @@ public class ViewsController {
             System.out.println("Invalid input please try again or enter exit to quit");
             displayOption();
         }
-
     }
 }

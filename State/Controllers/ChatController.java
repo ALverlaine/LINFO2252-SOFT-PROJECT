@@ -19,7 +19,8 @@ public class ChatController extends AbstractController {
     public ChatController(ChatView view) {
         this.view = view;
         this.chat = chatService.getSelectedChat();
-        view.displayAllMessages(chat.getMessages());
+        if(chat != null) view.displayAllMessages(chat.getMessages());
+        else System.out.println("There is no chat");
     }
 
     public void sendMessage(String content) throws NoUserConnected {
@@ -33,6 +34,10 @@ public class ChatController extends AbstractController {
         chat.addMessage(message);
 
         view.displayNewMessage(message);
+    }
+    public Chat getMessages(){
+        if(this.chat != null) return this.chat;
+        else return null;
     }
 
 }

@@ -30,6 +30,7 @@ public class Chat {
     }
 
     public List<Message> getMessages() {
-        return messageList;
+        if(!this.messageList.isEmpty()) return this.messageList;
+        else return null;
     }
 }

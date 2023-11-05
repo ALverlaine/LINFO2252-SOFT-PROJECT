@@ -1,8 +1,8 @@
 package State.Views;
 
 public enum ViewOption {
-    Chat,
-    Chat_list,
-    Contact,
+    CHAT,
+    CHAT_LIST,
+    CONTACT,
     EXIT
 }
