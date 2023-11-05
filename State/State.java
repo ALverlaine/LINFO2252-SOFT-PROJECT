@@ -6,6 +6,8 @@ import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
 import State.Models.Chat;
 import State.Models.User;
+import State.Services.AuthService;
+import State.Services.ChatService;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +21,9 @@ public class State {
     public User connectedUser;
     CommandsDirector commands;
 
-    public State() {
+    private State() {
+        ChatService chatService = ChatService.getInstance();
+        AuthService authService = AuthService.getInstance();
     }
 
     public static State getInstance() {
@@ -43,6 +47,11 @@ public class State {
         else throw new NoUserConnected();
     }
 
+    public String getConnectedUserName() throws NoUserConnected {
+        if (connectedUser != null) return connectedUser.getName();
+        else throw new NoUserConnected();
+    }
+
     public boolean isConnected(){
         return connectedUser != null;
     }
@@ -56,7 +65,7 @@ public class State {
     }
 
     public void addUser(User user) {
-        users.put(user.name, user);
+        users.put(user.getName(), user);
     }
 
     public Command getCommand(){

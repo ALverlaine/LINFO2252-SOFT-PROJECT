@@ -9,8 +9,8 @@ import java.util.HashMap;
 public class LoginView extends AbstractView {
 
     private final LoginController controller;
-    public LoginView(HashMap<String, Object> params) {
-        super(params);
+    public LoginView() {
+        super();
         controller = new LoginController(this);
     }
 

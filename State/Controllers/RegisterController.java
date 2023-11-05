@@ -9,7 +9,6 @@ import State.State;
 import State.Views.RegisterView;
 
 public class RegisterController extends AbstractController{
-    private State state;
     private RegisterView view;
     private AuthService authService = AuthService.getInstance();
 

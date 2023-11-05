@@ -4,6 +4,7 @@ import State.Exceptions.NoUserConnected;
 import State.Models.Chat;
 import State.Models.Message;
 import State.Models.User;
+import State.Services.ChatService;
 import State.Views.ChatView;
 import java.util.Date;
 import java.util.List;
@@ -11,13 +12,13 @@ import State.State;
 
 public class ChatController extends AbstractController {
 
-    State state = State.getInstance();
     private final ChatView view;
     private Chat chat;
+    private ChatService chatService = ChatService.getInstance();
 
-    public ChatController(ChatView view, Chat chat) {
+    public ChatController(ChatView view) {
         this.view = view;
-        this.chat = chat;
+        this.chat = chatService.getSelectedChat();
         view.displayAllMessages(chat.getMessages());
     }
 
@@ -33,4 +34,5 @@ public class ChatController extends AbstractController {
 
         view.displayNewMessage(message);
     }
+
 }

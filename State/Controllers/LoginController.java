@@ -7,7 +7,6 @@ import State.State;
 import State.Views.LoginView;
 
 public class LoginController extends AbstractController {
-    private State state;
     private LoginView view;
     private AuthService authService = AuthService.getInstance();
 

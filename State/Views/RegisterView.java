@@ -10,8 +10,8 @@ public class RegisterView extends AbstractView {
 
     private final RegisterController controller;
 
-    public RegisterView(HashMap<String, Object> params) {
-        super(params);
+    public RegisterView() {
+        super();
         controller = new RegisterController(this);
     }
 
