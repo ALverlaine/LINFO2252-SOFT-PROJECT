@@ -1,10 +1,10 @@
 package State.Views;
 
-import State.Controllers.AbstractController;
-
-import java.util.HashMap;
-
 public abstract class AbstractView {
     public AbstractView() {}
-    public abstract void initialize();
+    public abstract void run();
+    public void clearAll() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }

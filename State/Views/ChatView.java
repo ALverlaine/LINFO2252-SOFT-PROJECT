@@ -15,7 +15,7 @@ public class ChatView extends AbstractView {
     }
 
     @Override
-    public void initialize() {}
+    public void run() {}
 
     public void sendMessage(String content) throws NoUserConnected {
         // Get message from view

@@ -17,7 +17,7 @@ public class ChatListView extends AbstractView {
     }
 
     @Override
-    public void initialize() {}
+    public void run() {}
 
     public void selectChat() {
         //Let user choose from input

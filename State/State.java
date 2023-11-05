@@ -5,9 +5,6 @@ import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
 import State.Models.Chat;
 import State.Models.User;
-import State.Services.AuthService;
-import State.Services.ChatService;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -16,17 +13,15 @@ import java.util.Map;
 public class State {
 
     private static State instance = null;
-    private Map<String, User> users;
-    private Map<String, List<Map<String, Chat>>> chats;
+    private Map<String, User> users = new HashMap<>();
+    private Map<String, List<Map<String, Chat>>> chats = new HashMap<>();
     public User connectedUser;
-    private HashMap<String, AbstractController> commands;
+    private HashMap<String, AbstractController> commands = new HashMap<>();
     private AbstractController command;
     private String inputCMD;
     private String inputArgs;
 
-    public State() {
-        ChatService chatService = ChatService.getInstance();
-        AuthService authService = AuthService.getInstance();
+    private State() {
     }
 
     public static State getInstance() {
