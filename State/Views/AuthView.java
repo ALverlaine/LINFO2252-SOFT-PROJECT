@@ -11,7 +11,6 @@ public class AuthView extends AbstractView {
 
     private final AuthController controller;
 
-    Scanner scanner = new Scanner(System.in);
     boolean authSuccessful = false;
     public AuthView() {
         super();
@@ -22,19 +21,9 @@ public class AuthView extends AbstractView {
     public void run() {
         while (!authSuccessful) {
             try {
-                System.out.print("""
-                        Do you want to :\s
-                         (1) Login\s
-                         (2) Register\s
-                         Enter the number you want to select:  """);
-
+                printAuthChoice();
                 int command = Integer.parseInt(scanner.nextLine());
-                if (command == 1) login();
-                else if (command == 2) register();
-                else {
-                    System.out.println("Command not found, enter again");
-                    clearAll();
-                }
+                controller.parseAuthInput(command);
             }
             catch (NumberFormatException input) {
                 System.out.println("The input is badly formatted");
@@ -42,9 +31,16 @@ public class AuthView extends AbstractView {
         }
     }
 
+    public void printAuthChoice() {
+        System.out.print("""
+                        Do you want to :\s
+                         (1) Login\s
+                         (2) Register\s
+                         Enter the number you want to select:  """);
+
+    }
 
     public void login() {
-
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
@@ -56,8 +52,10 @@ public class AuthView extends AbstractView {
     public void register() {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
+
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
+
         System.out.print("Confirm password: ");
         String confirmPassword = scanner.nextLine();
 
@@ -69,6 +67,7 @@ public class AuthView extends AbstractView {
 
     public void authSuccessful() {
         authSuccessful = true;
+
         System.out.println("You are now connected!");
         ViewsController homepage;
         homepage = new ViewsController();
@@ -88,5 +87,11 @@ public class AuthView extends AbstractView {
     public void registerUnsuccessful() {
         System.out.println("The user already exists!");
     }
+
+    public void exit() {
+        //Kill the app
+    }
+
+
 }
 

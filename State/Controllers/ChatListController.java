@@ -18,22 +18,44 @@ public class ChatListController extends AbstractController {
     public ChatListController(ChatListView view) throws NoUserConnected, UserDoesntExist {
         this.view = view;
         this.chats = chatService.getUserChats(state.getConnectedUserName());
-        view.displayAllChats(chats);
+    }
+
+
+    public void parseInput(int input) {
+        final int OPEN = 1;
+        final int ADD = 2;
+        final int DELETE = 3;
+        final int BACK = 4;
+        String receiver = "";
+        if (input <= DELETE && input >= OPEN) {
+            receiver = view.selectChat();
+        }
+
+        switch(input) {
+            case OPEN -> goToChat(receiver);
+            case ADD -> modifyChat(receiver, true);
+            case DELETE -> modifyChat(receiver, false);
+            case BACK -> view.exitView();
+            default -> view.inputNotRecognized();
+        }
     }
 
     public void goToChat(String receiver) {
        try {
            chatService.setSelectedChat(receiver);
-           //Also switch view
+           view.exitView();
+           //Put chat screen
        }
-       catch (UserDoesntExist e1) {view.userDoesntExist();}
-       catch (HasNoChat e2) {view.hasNoChat();}
+       catch (UserDoesntExist e1) {view.userDoesntExist(receiver);}
+       catch (HasNoChat e2) {view.hasNoChat(receiver);}
+       catch (NoUserConnected e) {
+       }
     }
 
     public void modifyChat(String receiver, boolean isAdding) {
         boolean userExists = state.userExists(receiver);
         if (!userExists) {
-            view.userDoesntExist();
+            view.userDoesntExist(receiver);
             return;
         }
 
@@ -43,14 +65,16 @@ public class ChatListController extends AbstractController {
                 chatService.addChat(receiver, chat);
             }
             catch (NoUserConnected | UserDoesntExist ignored) {} //Can never happen
-            catch (AlreadyHasChat e) {view.alreadyHasChat();}
+            catch (AlreadyHasChat e) {view.alreadyHasChat(receiver);}
         }
 
         else {
             try { chatService.removeChat(receiver); }
-            catch (HasNoChat e) {view.hasNoChat();}
+            catch (HasNoChat e) {view.hasNoChat(receiver);}
         }
     }
 
-
+    public Map<String, Chat> getChats() {
+        return chats;
+    }
 }

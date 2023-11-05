@@ -1,13 +1,18 @@
 package State.Services;
 
 import State.Exceptions.AlreadyHasChat;
+<<<<<<< HEAD
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
+=======
+>>>>>>> 9d63d67 (Added chat list)
 import State.Models.Chat;
 import State.Models.User;
 import State.State;
 public class Database {
-    public static void populateUsersDB(State state) {
+    public static void populateUsersDB(State state) throws AlreadyHasChat {
+
+        ChatService chatService = ChatService.getInstance();
         User a = new User("a", "a");
         User b = new User("b", "b");
         User c = new User("c", "c");
@@ -17,6 +22,7 @@ public class Database {
         state.addUser(c);
         state.addUser(d);
     }
+
     public static void populateChatsDB(State state) throws UserDoesntExist, NoUserConnected, AlreadyHasChat {
         state.setConnectedUser(state.getUser("a"));
         User b = state.getUser("b");
@@ -28,6 +34,7 @@ public class Database {
         ChatService chatService = ChatService.getInstance();
         chatService.addChat("b", chat1);
         chatService.addChat("c", chat2);
+
     }
 
 }

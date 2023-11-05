@@ -35,8 +35,8 @@ public class ChatService {
         return chats.get(username);
     }
 
-    public Chat getChatWith(String receiver) throws HasNoChat, UserDoesntExist {
-        Map<String,Chat> userChats = getUserChats(receiver);
+    public Chat getChatWith(String receiver) throws HasNoChat, UserDoesntExist, NoUserConnected {
+        Map<String,Chat> userChats = getUserChats(state.getConnectedUserName());
         Chat chat = userChats.get(receiver);
         if (chat == null) throw new HasNoChat();
         return chat;
@@ -77,7 +77,7 @@ public class ChatService {
         } catch (NoUserConnected | UserDoesntExist ignored) {}
     }
 
-    public void setSelectedChat(String receiver) throws HasNoChat, UserDoesntExist {
+    public void setSelectedChat(String receiver) throws HasNoChat, UserDoesntExist, NoUserConnected {
         selectedChat = getChatWith(receiver);
     }
 

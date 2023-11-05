@@ -14,7 +14,6 @@ public class State {
 
     private static State instance = null;
     private Map<String, User> users = new HashMap<>();
-    private Map<String, List<Map<String, Chat>>> chats = new HashMap<>();
     public User connectedUser;
     private HashMap<String, AbstractController> commands = new HashMap<>();
     private AbstractController command;
@@ -72,16 +71,20 @@ public class State {
     public void setCommand(HashMap<String, AbstractController> commands){
         this.commands = commands;
     }
+
     public void setCMD(String[] command){
         this.inputCMD = command[0];
         this.inputArgs = command.length > 1 ? command[1] : null;
     }
+
     public void setOneCommand(AbstractController command){
         this.command = command;
     }
+
     public AbstractController getOneCommand(){
         return this.command;
     }
+
     public String getInputCMD(){
         return this.inputCMD;
     }
