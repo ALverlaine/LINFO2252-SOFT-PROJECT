@@ -10,6 +10,8 @@ import State.Views.ChatView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
 import State.State;
 
 public class ChatController extends AbstractController {
@@ -25,17 +27,20 @@ public class ChatController extends AbstractController {
         else System.out.println("There is no chat");
     }
 
-    public void parseInput(int input) {
+    public void parseInput(int input) throws NoUserConnected {
         final int SEND = 1;
         final int SEE = 2;
         final int SEE_NEW = 3;
         final int BACK = 4;
+        final int EXIT = 5;
 
         switch (input) {
             case SEND -> view.sendMessage();
             case SEE -> view.displayAllMessages(chat.getMessages());
-            case SEE_NEW -> view.displayNewMessage(chat.getNewMessages());
+            case SEE_NEW -> view.displayNewMessage(chat.getNewMessages(state.getConnectedUser()));
             case BACK -> view.goBack();
+            case EXIT -> view.exit();
+            default -> view.inputNotRecognized();
         }
     }
 
@@ -51,26 +56,18 @@ public class ChatController extends AbstractController {
         Message message = new Message(sender, receiver, content, formattedDate);
 
         chat.addMessage(message);
+        chat.addNewMessage(message, sender);
         try{
-            view.displayNewMessage(message);
+            view.displayNewMessageAfterSend(message);
         }catch (Exception ignored){}
 
     }
 
-    public Chat getChat(User user) {
-        try {
-            return chatService.getChatWith(user.getName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public void setChat(Chat chat) {
-        this.chat = chat;
+    public void removeNewMessages() throws NoUserConnected {
+        chat.removeNewMessages(state.getConnectedUser());
+        //System.out.println(chat.getNewMessages());
     }
 
-    public List<User> getChatUsers() {
-        return chat.getChatUsers();
-    }
+
 
 }

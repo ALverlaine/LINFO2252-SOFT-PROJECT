@@ -78,4 +78,5 @@ public class ChatListController extends AbstractController {
     public Map<String, Chat> getChats() {
         return chats;
     }
+
 }

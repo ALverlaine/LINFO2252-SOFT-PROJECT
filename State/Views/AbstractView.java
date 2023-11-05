@@ -1,5 +1,7 @@
 package State.Views;
 
+import State.Exceptions.NoUserConnected;
+
 import java.util.Scanner;
 
 public abstract class AbstractView {
@@ -13,7 +15,7 @@ public abstract class AbstractView {
         this.previousView = previousView;
     }
 
-    public abstract AbstractView run();
+    public abstract AbstractView run() throws NoUserConnected;
 
     public void clearAll() {
         System.out.print("\033[H\033[2J");
@@ -32,5 +34,10 @@ public abstract class AbstractView {
     public void goBack() {
         nextView = previousView;
         exit = true;
+    }
+
+    public void exit() {
+        System.out.println("Exiting...");
+        System.exit(0);
     }
 }

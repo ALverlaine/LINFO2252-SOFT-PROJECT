@@ -17,7 +17,7 @@ public class ChatView extends AbstractView {
     }
 
     @Override
-    public AbstractView run() {
+    public AbstractView run() throws NoUserConnected {
         while (!exit) {
             displayOptions();
             int command = Integer.parseInt(scanner.nextLine());
@@ -27,9 +27,20 @@ public class ChatView extends AbstractView {
     }
 
 
-    public void displayNewMessage(Message message) {
-        System.out.println(message);
+    public void displayNewMessage(List<Message> message) throws NoUserConnected {
+        if(message.isEmpty()) System.out.println("There is no new messages :(");
+        else {
+            System.out.println("------------New Chats------------");
+            for (Message value : message) {
+                System.out.println(value);
+            }
+            System.out.println("---------------------------------");
+        }
+        controller.removeNewMessages();
         //Print new message info
+    }
+    public void displayNewMessageAfterSend(Message message) {
+        System.out.println(message);
     }
 
     public void displayAllMessages(List<Message> message) {

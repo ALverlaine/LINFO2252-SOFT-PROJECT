@@ -1,5 +1,7 @@
 package State.Views;
 
+import State.Exceptions.NoUserConnected;
+
 import java.util.*;
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class ViewsController {
         //displayOption();
     }
 
-    public void displayOption() {
+    public void displayOption() throws NoUserConnected {
         System.out.println("Please enter one of the following options: ");
         for(ViewOption option : ViewOption.values()) {
             System.out.println(option);
@@ -35,7 +37,7 @@ public class ViewsController {
         }
     }
 
-    public void run() {
+    public void run() throws NoUserConnected {
         AbstractView tmp = new AuthView(null);
         AbstractView view = new AuthView(tmp);
         while (true) {
