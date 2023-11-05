@@ -15,7 +15,7 @@ public class ViewsController {
         displayOption();
     }
 
-    public AbstractView displayOption() {
+    public void displayOption() {
         System.out.println("Please enter one of the following options: ");
         for(ViewOption option : ViewOption.values()) {
             System.out.println(option);
@@ -25,10 +25,10 @@ public class ViewsController {
         try{
             ViewOption viewOption = ViewOption.valueOf(input);
             AbstractView view = viewMap.get(viewOption);
-            return view;
+            view.run();
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid input please try again or enter exit to quit");
-            return displayOption();
+            displayOption();
         }
 
     }
