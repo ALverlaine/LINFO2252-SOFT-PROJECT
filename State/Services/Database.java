@@ -1,11 +1,9 @@
 package State.Services;
 
 import State.Exceptions.AlreadyHasChat;
-<<<<<<< HEAD
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
-=======
->>>>>>> 9d63d67 (Added chat list)
+
 import State.Models.Chat;
 import State.Models.User;
 import State.State;
