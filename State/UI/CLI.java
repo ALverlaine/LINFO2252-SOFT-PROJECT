@@ -11,7 +11,9 @@ public class CLI {
         //System.out.println("Welcome to the chat app!");
         //System.out.println("Please enter your username:");
         this.displayPossibleCmd(controllers);
+        //take input
         state.setCMD(CLI.getArgs());
+        //set new state  of command
         state.setOneCommand(state.getOneCommand().ApplyNewCommand(state));
     }
 
