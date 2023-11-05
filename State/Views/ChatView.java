@@ -3,6 +3,7 @@ package State.Views;
 import State.Controllers.ChatController;
 import State.Exceptions.NoUserConnected;
 import State.Models.Message;
+import State.Models.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -65,10 +66,16 @@ public class ChatView extends AbstractView {
             case 2:
                 //if(controller.getMessages() != null && controller.getMessages().getMessages() != null) displayAllMessages(controller.getMessages().getMessages());
                 //else System.out.println("There is no messages");
-                displayAllMessages(controller.getMessages().getMessages());
+                System.out.println("From how do you want to get all the messages: ");
+                List<User> UserList = controller.getChatUsers();
+                for(User user: UserList) {
+                    System.out.println(user.getName());
+                }
+                String user = scanner.nextLine();
+                //displayAllMessages(controller.getChat().getMessages());
                 displayOptions();
             case 3:
-                displayNewMessage(controller.getMessages().getMessages().get(controller.getMessages().getMessages().size()-1));
+                //displayNewMessage(controller.getChat().getMessages().get(controller.getChat().getMessages().size()-1));
                 displayOptions();
             case 4:
                 ViewsController viewsController = new ViewsController();

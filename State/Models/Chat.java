@@ -31,7 +31,6 @@ public class Chat {
     }
 
     public List<Message> getMessages() {
-        if(!this.messageList.isEmpty()) return this.messageList;
-        else return null;
+        return this.messageList;
     }
 }

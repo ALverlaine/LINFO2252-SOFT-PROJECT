@@ -35,9 +35,16 @@ public class ChatController extends AbstractController {
 
         view.displayNewMessage(message);
     }
-    public Chat getMessages(){
-        if(this.chat != null) return this.chat;
-        else return null;
+    public Chat getChat(User user) {
+        try {
+            return chatService.getChatWith(user.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<User> getChatUsers() {
+        return chat.getChatUsers();
     }
 
 }
