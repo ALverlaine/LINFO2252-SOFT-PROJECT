@@ -1,17 +1,14 @@
 import State.Exceptions.NoUserConnected;
+import State.Models.Chat;
 import State.Models.User;
+import State.Services.Database;
 import State.State;
 import State.Views.AuthView;
 
 public class main {
     public static void main(String[] args) throws NoUserConnected {
-        User a = new User("a", "a");
-        User b = new User("b", "b");
-        User c = new User("c", "c");
         State state = State.getInstance();
-        state.addUser(a);
-        state.addUser(b);
-        state.addUser(c);
+        Database.populateUsersDB(state);
 
         AuthView view = new AuthView();
         view.run();
