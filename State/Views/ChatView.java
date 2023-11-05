@@ -33,11 +33,13 @@ public class ChatView extends AbstractView {
     }
 
     public void displayAllMessages(List<Message> message) {
-        if(message == null) System.out.println("No messages");
+        if(message.isEmpty()) System.out.println("There is no messages :(");
         else {
+            System.out.println("--------------Chats--------------");
             for (Message value : message) {
                 System.out.println(value);
             }
+            System.out.println("---------------------------------");
         }
     }
 

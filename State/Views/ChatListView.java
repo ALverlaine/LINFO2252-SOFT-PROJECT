@@ -39,10 +39,10 @@ public class ChatListView extends AbstractView {
 
     public void createOutput(Map<String, Chat> chats) {
         StringBuilder chatsOutput = new StringBuilder();
-        chatsOutput.append("Here are all your available chats \n");
+        chatsOutput.append("Here are all your contacts ! \n");
         chatsOutput.append("-----Contacts----- \n");
         addAllChats(chats, chatsOutput);
-        chatsOutput.append("--------------- \n");
+        chatsOutput.append("------------------ \n");
 
         chatsOutput.append("""
                 What do you wish to do?\s
@@ -61,14 +61,16 @@ public class ChatListView extends AbstractView {
     }
 
     public String selectChat() {
-        System.out.print("Select the user you want you want to apply the operation to:\n");
+        System.out.print("Enter the name of the user you want:\n");
         return scanner.nextLine();
 
     }
 
     public void addAllChats(Map<String, Chat> chats, StringBuilder chatsOutput) {
+        int i = 1;
         for (String user : chats.keySet()) {
-            chatsOutput.append(user).append("\n");
+            chatsOutput.append(i).append(". ").append(user).append("\n");
+            i++;
         }
     }
 
