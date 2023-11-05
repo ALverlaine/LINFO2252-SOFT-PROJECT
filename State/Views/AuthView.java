@@ -10,12 +10,12 @@ import java.util.Scanner;
 public class AuthView extends AbstractView {
 
     private final AuthController controller;
+
     Scanner scanner = new Scanner(System.in);
     boolean authSuccessful = false;
     public AuthView() {
         super();
         controller = new AuthController(this);
-
     }
 
     @Override
@@ -69,6 +69,10 @@ public class AuthView extends AbstractView {
 
     public void authSuccessful() {
         authSuccessful = true;
+        System.out.println("You are now connected!");
+        ViewsController homepage;
+        homepage = new ViewsController();
+        homepage.displayOption();
         //ICI ON SORT DE LOGIN
         // Go to homepage
     }
