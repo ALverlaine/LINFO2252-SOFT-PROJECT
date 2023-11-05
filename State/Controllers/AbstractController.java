@@ -19,9 +19,6 @@ public class AbstractController {
         if (nextRunner != null) {
             return nextRunner;
         }
-
-
-
         throw new IllegalStateException();
     }
 

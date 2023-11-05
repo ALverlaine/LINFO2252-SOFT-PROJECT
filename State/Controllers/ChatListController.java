@@ -7,7 +7,7 @@ import State.Exceptions.UserDoesntExist;
 import State.Models.Chat;
 import State.Services.ChatService;
 import State.Views.ChatListView;
-import State.State;
+
 import java.util.Map;
 
 public class ChatListController extends AbstractController {
@@ -35,7 +35,7 @@ public class ChatListController extends AbstractController {
             case OPEN -> goToChat(receiver);
             case ADD -> modifyChat(receiver, true);
             case DELETE -> modifyChat(receiver, false);
-            case BACK -> view.exitView();
+            case BACK -> view.goBack();
             default -> view.inputNotRecognized();
         }
     }
@@ -43,13 +43,12 @@ public class ChatListController extends AbstractController {
     public void goToChat(String receiver) {
        try {
            chatService.setSelectedChat(receiver);
-           view.exitView();
+           view.goToChat();
            //Put chat screen
        }
        catch (UserDoesntExist e1) {view.userDoesntExist(receiver);}
        catch (HasNoChat e2) {view.hasNoChat(receiver);}
-       catch (NoUserConnected e) {
-       }
+       catch (NoUserConnected e) {}
     }
 
     public void modifyChat(String receiver, boolean isAdding) {

@@ -8,9 +8,9 @@ public class Message {
     private final User sender;
     private User receiver;
     private final String content;
-    private final Date date;
+    private final String date;
 
-    public Message(User sender, User receiver, String content, Date date) {
+    public Message(User sender, User receiver, String content, String date) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
@@ -19,6 +19,6 @@ public class Message {
 
     @Override
     public String toString () {
-        return date.toString() + sender + content;
+        return date + sender.asMessageString() + "Content: " + content;
     }
 }

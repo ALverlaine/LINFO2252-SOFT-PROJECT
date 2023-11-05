@@ -7,21 +7,19 @@ import State.Models.Chat;
 import State.Services.ChatService;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class ChatListView extends AbstractView {
 
     private final ChatListController controller;
     private ChatService chatService = ChatService.getInstance();
-    private boolean exit = false;
-    public ChatListView() throws NoUserConnected, UserDoesntExist {
-        super();
+    public ChatListView(AbstractView previousView) throws NoUserConnected, UserDoesntExist {
+        super(previousView);
         this.controller = new ChatListController(this);
     }
 
     @Override
-    public void run() {
+    public AbstractView run() {
         while (!exit) {
             int command;
             clearAll();
@@ -35,6 +33,8 @@ public class ChatListView extends AbstractView {
             catch (NumberFormatException e) {scanner = new Scanner(System.in);
             }
         }
+        exit = false;
+        return nextView;
     }
 
     public void createOutput(Map<String, Chat> chats) {
@@ -54,8 +54,8 @@ public class ChatListView extends AbstractView {
         System.out.println(chatsOutput);
     }
 
-    public void exitView() {
-        //Need to put selected view
+    public void goToChat() {
+        nextView = new ChatView(this);
         exit = true;
     }
 

@@ -5,10 +5,15 @@ import java.util.Scanner;
 public abstract class AbstractView {
 
     Scanner scanner = new Scanner(System.in);
+    AbstractView previousView;
+    AbstractView nextView;
+    protected boolean exit = false;
 
-    public AbstractView() {}
+    public AbstractView(AbstractView previousView) {
+        this.previousView = previousView;
+    }
 
-    public abstract void run();
+    public abstract AbstractView run();
 
     public void clearAll() {
         System.out.print("\033[H\033[2J");
@@ -20,4 +25,12 @@ public abstract class AbstractView {
         clearAll();
     }
 
+    public void setPreviousView(AbstractView previousView) {
+        this.previousView = previousView;
+    }
+
+    public void goBack() {
+        nextView = previousView;
+        exit = true;
+    }
 }

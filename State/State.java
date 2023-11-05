@@ -3,11 +3,9 @@ package State;
 import State.Controllers.AbstractController;
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
-import State.Models.Chat;
 import State.Models.User;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class State {

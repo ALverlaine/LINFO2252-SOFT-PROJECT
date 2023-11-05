@@ -27,6 +27,9 @@ public class AuthController extends AbstractController {
         }
     }
 
+    public void reset() {
+        state.setConnectedUser(null);
+    }
 
     public void login(String username, String password) {
         try {
@@ -50,6 +53,7 @@ public class AuthController extends AbstractController {
             User user = authService.register(username, password);
             state.addUser(user);
             state.setConnectedUser(user);
+            view.authSuccessful();
         }
         catch ( UserExists e) {
             // Show in view

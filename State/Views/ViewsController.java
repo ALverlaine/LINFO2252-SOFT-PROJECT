@@ -7,12 +7,11 @@ public class ViewsController {
     private final Map<ViewOption, AbstractView> viewMap = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
 
-
     public ViewsController() {
-        viewMap.put(ViewOption.CHAT, new ChatView());
+      //  viewMap.put(ViewOption.CHAT, new ChatView());
         //viewMap.put(ViewOption.Chat_list, new ChatListView());
         //viewMap.put(ViewOption.Contact, new ContactView());
-        displayOption();
+        //displayOption();
     }
 
     public void displayOption() {
@@ -33,6 +32,14 @@ public class ViewsController {
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid input please try again or enter exit to quit");
             displayOption();
+        }
+    }
+
+    public void run() {
+        AbstractView tmp = new AuthView(null);
+        AbstractView view = new AuthView(tmp);
+        while (true) {
+            view = view.run();
         }
     }
 }

@@ -2,7 +2,9 @@ package State.Views;
 
 import State.Controllers.AuthController;
 import State.Exceptions.IncorrectPassword;
+import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
+import State.Models.User;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -11,15 +13,16 @@ public class AuthView extends AbstractView {
 
     private final AuthController controller;
 
-    boolean authSuccessful = false;
-    public AuthView() {
-        super();
+    public AuthView(AbstractView previousView) {
+        super(previousView);
         controller = new AuthController(this);
     }
 
     @Override
-    public void run() {
-        while (!authSuccessful) {
+    public AbstractView run() {
+        controller.reset();
+        previousView = this;
+        while (!exit) {
             try {
                 printAuthChoice();
                 int command = Integer.parseInt(scanner.nextLine());
@@ -27,8 +30,11 @@ public class AuthView extends AbstractView {
             }
             catch (NumberFormatException input) {
                 System.out.println("The input is badly formatted");
+                scanner = new Scanner(System.in);
             }
         }
+        exit = false;
+        return nextView;
     }
 
     public void printAuthChoice() {
@@ -63,17 +69,12 @@ public class AuthView extends AbstractView {
         else System.out.println("The passwords don't match");
     }
 
-
-
     public void authSuccessful() {
-        authSuccessful = true;
-
+        exit = true;
+        try {
+            nextView = new ChatListView(this);
+        } catch (NoUserConnected | UserDoesntExist ignored) {}
         System.out.println("You are now connected!");
-        ViewsController homepage;
-        homepage = new ViewsController();
-        homepage.displayOption();
-        //ICI ON SORT DE LOGIN
-        // Go to homepage
     }
 
     public void loginUnsuccessful(IncorrectPassword e) {
@@ -89,7 +90,7 @@ public class AuthView extends AbstractView {
     }
 
     public void exit() {
-        //Kill the app
+        System.exit(0);
     }
 
 

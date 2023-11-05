@@ -30,6 +30,7 @@ public class Database {
         Chat chat2 = new Chat(state.getConnectedUser(), c);
         //Chat chat3 = new Chat(state.getConnectedUser(), d);
         ChatService chatService = ChatService.getInstance();
+
         chatService.addChat("b", chat1);
         chatService.addChat("c", chat2);
 

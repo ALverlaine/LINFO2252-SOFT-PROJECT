@@ -24,4 +24,8 @@ public class User {
     public String toString () {
         return "Username: " + name + "\n";
     }
+
+    public String asMessageString() {
+        return "From: " + name + " ";
+    }
 }
