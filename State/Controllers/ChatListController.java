@@ -26,6 +26,7 @@ public class ChatListController extends AbstractController {
         final int ADD = 2;
         final int DELETE = 3;
         final int BACK = 4;
+        final int EXIT = 5;
         String receiver = "";
         if (input <= DELETE && input >= OPEN) {
             receiver = view.selectChat();
@@ -36,6 +37,7 @@ public class ChatListController extends AbstractController {
             case ADD -> modifyChat(receiver, true);
             case DELETE -> modifyChat(receiver, false);
             case BACK -> view.goBack();
+            case EXIT -> view.exit();
             default -> view.inputNotRecognized();
         }
     }

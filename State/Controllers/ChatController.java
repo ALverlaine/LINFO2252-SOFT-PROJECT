@@ -49,8 +49,10 @@ public class ChatController extends AbstractController {
         Message message = new Message(sender, receiver, content, formattedDate);
 
         chat.addMessage(message);
+        try{
+            view.displayNewMessage(message);
+        }catch (Exception ignored){}
 
-        view.displayNewMessage(message);
     }
 
     public Chat getChat(User user) {
@@ -60,6 +62,9 @@ public class ChatController extends AbstractController {
             e.printStackTrace();
         }
         return null;
+    }
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
     public List<User> getChatUsers() {

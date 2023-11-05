@@ -42,6 +42,7 @@ public class AuthView extends AbstractView {
                         Do you want to :\s
                          (1) Login\s
                          (2) Register\s
+                         (3) Exit\s
                          Enter the number you want to select:  """);
 
     }

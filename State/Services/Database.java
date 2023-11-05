@@ -1,10 +1,12 @@
 package State.Services;
 
+import State.Controllers.ChatController;
 import State.Exceptions.AlreadyHasChat;
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
 
 import State.Models.Chat;
+import State.Models.Message;
 import State.Models.User;
 import State.State;
 public class Database {
@@ -30,9 +32,15 @@ public class Database {
         Chat chat2 = new Chat(state.getConnectedUser(), c);
         //Chat chat3 = new Chat(state.getConnectedUser(), d);
         ChatService chatService = ChatService.getInstance();
-
         chatService.addChat("b", chat1);
         chatService.addChat("c", chat2);
+        Message message1 = new Message(state.getConnectedUser(), b, "Hello", "2021-05-05 12:00:00");
+        Message message2 = new Message(state.getConnectedUser(), b, "How are you?", "2021-05-05 12:00:30");
+        chat1.addMessage(message1);
+        chat1.addMessage(message2);
+        state.setConnectedUser(state.getUser("b"));
+        Message message3 = new Message(state.getConnectedUser(), c, "Hello, fine and you ?", "2021-05-05 12:20:00");
+        chat1.addMessage(message3);
 
     }
 

@@ -40,9 +40,9 @@ public class ChatListView extends AbstractView {
     public void createOutput(Map<String, Chat> chats) {
         StringBuilder chatsOutput = new StringBuilder();
         chatsOutput.append("Here are all your available chats \n");
-        chatsOutput.append("-----Chats----- \n");
+        chatsOutput.append("-----Contacts----- \n");
         addAllChats(chats, chatsOutput);
-        chatsOutput.append("-----End of chats----- \n");
+        chatsOutput.append("--------------- \n");
 
         chatsOutput.append("""
                 What do you wish to do?\s
@@ -50,6 +50,7 @@ public class ChatListView extends AbstractView {
                 (2) Add a new chat\s
                 (3) Delete a chat\s
                 (4) Go back\s
+                (5) Exit\s
                 Enter your choice: """);
         System.out.println(chatsOutput);
     }
@@ -60,7 +61,7 @@ public class ChatListView extends AbstractView {
     }
 
     public String selectChat() {
-        System.out.print("Select the user you want you want to apply the operation to");
+        System.out.print("Select the user you want you want to apply the operation to:\n");
         return scanner.nextLine();
 
     }
@@ -81,6 +82,10 @@ public class ChatListView extends AbstractView {
 
     public void hasNoChat(String receiver) {
         System.out.println("You have no chats with user " + receiver);
+    }
+    public void exit() {
+        System.out.println("Exiting...");
+        System.exit(0);
     }
 
 

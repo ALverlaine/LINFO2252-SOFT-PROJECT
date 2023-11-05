@@ -59,6 +59,7 @@ public class ChatView extends AbstractView {
                  (2) See all messages\s
                  (3) See new messages\s
                  (4) Go back\s
+                 (5) Exit\s
                  Enter the number you want to select:  """);
 
     }
