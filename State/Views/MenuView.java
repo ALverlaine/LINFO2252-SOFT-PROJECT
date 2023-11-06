@@ -65,8 +65,8 @@ public class MenuView extends AbstractView {
             output.append(featureString);
             i++;
         }
-        output.append("Select the feature: \n");
-        System.out.println(output);
+        output.append("Select the feature: ");
+        System.out.print(output);
         try {
             return Integer.parseInt(scanner.nextLine());
         }

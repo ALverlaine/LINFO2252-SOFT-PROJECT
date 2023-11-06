@@ -21,6 +21,7 @@ public class State {
     private String inputCMD;
     private String inputArgs;
 
+
     private Map<FeatureName, Feature> features;
 
     private State() {
@@ -33,7 +34,7 @@ public class State {
     }
 
     private void createFeatures() {
-        features = new HashMap<>();
+        features = new LinkedHashMap<FeatureName, Feature>();
         features.put(FeatureName.Status, new Status());
         features.put(FeatureName.Research, new Research());
     }

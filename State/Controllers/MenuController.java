@@ -43,7 +43,7 @@ public class MenuController extends AbstractController {
         Map<FeatureName, Feature> features = state.getFeatures();
         Feature feature = null;
         try {
-            int intFeature = view.selectFeature(state.getFeatures());
+            int intFeature = view.selectFeature(features);
             feature = features.get(FeatureName.fromInt(intFeature - 1));
             //System.out.println(feature);
         }

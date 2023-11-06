@@ -10,10 +10,13 @@ public class Status extends Feature {
 
     @Override
     public void activate() {
+        super.activate();
         goOnline();
     }
+
     public void goOnline() {
         currentActivity = Activity.Online;
+
     }
 
     public void goOffline() {
