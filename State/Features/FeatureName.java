@@ -1,8 +1,8 @@
 package State.Features;
 
 public enum FeatureName {
-    Status,
-    Research;
+    Research,
+    Status;
 
     public static FeatureName fromInt(int value) {
         for (FeatureName feature : FeatureName.values()) {
