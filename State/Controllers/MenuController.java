@@ -3,6 +3,7 @@ import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
 import State.Features.Feature;
 import State.Features.FeatureName;
+import State.Models.User;
 import State.State;
 import State.Views.ChatView;
 import State.Views.MenuView;
@@ -40,9 +41,10 @@ public class MenuController extends AbstractController {
     }
 
     public void selectFeature(boolean activate) {
-        Map<FeatureName, Feature> features = state.getFeatures();
         Feature feature = null;
         try {
+            User connectedUser = state.getConnectedUser();
+            Map<FeatureName, Feature> features = connectedUser.getFeatures();
             int intFeature = view.selectFeature(features);
             feature = features.get(FeatureName.fromInt(intFeature - 1));
             //System.out.println(feature);
@@ -51,6 +53,7 @@ public class MenuController extends AbstractController {
             view.wrongFeatureSelected();
             return;
         }
+        catch (NoUserConnected ignored) {}
         if (activate) feature.activate();
         else feature.deactivate();
     }

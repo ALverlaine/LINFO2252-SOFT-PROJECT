@@ -40,7 +40,11 @@ public class State {
     }
 
     public Map<FeatureName, Feature> getFeatures() {
-        return new HashMap<>(features);
+
+        Map<FeatureName, Feature> userFeatures = new LinkedHashMap<FeatureName, Feature>();
+        features.put(FeatureName.Status, new Status());
+        features.put(FeatureName.Research, new Research());
+        return new HashMap<>(userFeatures);
     }
 
     public Map<String, User> getUsers() {
