@@ -76,6 +76,7 @@ public class ChatListView extends AbstractView {
         int i = 1;
         for (String user : chats.keySet()) {
             String userString = user;
+            //System.out.println(controller.statusActivated());
             if (controller.statusActivated())
                 userString = user + " - Status: " + controller.getStatus(user);
             chatsOutput.append(i).append(". ").append(userString).append("\n");

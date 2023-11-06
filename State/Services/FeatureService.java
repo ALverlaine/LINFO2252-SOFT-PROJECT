@@ -27,6 +27,7 @@ public class FeatureService {
             connectedUser = state.getConnectedUser();
         }
         catch (NoUserConnected ignored) {}
+        assert connectedUser != null;
         return connectedUser.getFeatures();
     }
 

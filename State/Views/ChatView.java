@@ -2,6 +2,7 @@ package State.Views;
 
 import State.Controllers.ChatController;
 import State.Exceptions.NoUserConnected;
+import State.Exceptions.UserDoesntExist;
 import State.Models.Message;
 import State.Models.User;
 
@@ -72,9 +73,8 @@ public class ChatView extends AbstractView {
                     Do you want to :\s
                      (1) Send message\s
                      (2) See all messages\s
-                     (3) See new messages\s
-                     (4) Go back\s
-                     (5) Exit\s
+                     (3) Go back\s
+                     (4) Exit\s
                      Enter the number you want to select:  """);
         }
         else {
@@ -82,10 +82,9 @@ public class ChatView extends AbstractView {
                     Do you want to :\s
                      (1) Send message\s
                      (2) See all messages\s
-                     (3) See new messages\s
-                     (4) Go back\s
-                     (5) Exit\s
-                     (6) Research a message\s
+                     (3) Go back\s
+                     (4) Exit\s
+                     (5) Research a message\s
                      Enter the number you want to select:  """);
 
         }
@@ -106,5 +105,20 @@ public class ChatView extends AbstractView {
                 System.out.println(message);
             }
         }
+    }
+    public void getNewListMessage() throws NoUserConnected, UserDoesntExist {
+        List<Message> newMessages = controller.getNewListMessage();
+        if(newMessages.isEmpty()){
+            System.out.println("There is no new messages :(");
+        }else {
+            System.out.println("------------New Chats------------");
+            for(Message m: newMessages){
+                System.out.println(m);
+            }
+            System.out.println("---------------------------------");
+            controller.removeAllNewMessages();
+        }
+
+
     }
 }

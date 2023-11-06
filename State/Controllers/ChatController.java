@@ -35,15 +35,14 @@ public class ChatController extends AbstractController {
     public void parseInput(int input) throws NoUserConnected {
         final int SEND = 1;
         final int SEE = 2;
-        final int SEE_NEW = 3;
-        final int BACK = 4;
-        final int EXIT = 5;
-        final int RESEARCH = 6;
+        final int BACK = 3;
+        final int EXIT = 4;
+        final int RESEARCH = 5;
 
         switch (input) {
             case SEND -> view.sendMessage();
             case SEE -> view.displayAllMessages(chat.getMessages());
-            case SEE_NEW -> view.displayNewMessage(chat.getNewMessages(state.getConnectedUser()));
+            //case SEE_NEW -> view.displayNewMessage(chat.getNewMessages(state.getConnectedUser()));
             case BACK -> view.goBack();
             case EXIT -> view.exit();
             case RESEARCH -> researchMessages();
@@ -82,11 +81,17 @@ public class ChatController extends AbstractController {
         return featureService.researchActivated();
     }
 
+    public List<Message> getNewListMessage() throws NoUserConnected, UserDoesntExist {
+        return chatService.getListNewMessage(state.getConnectedUserName());
+    }
+
     public void removeNewMessages() throws NoUserConnected {
         chat.removeNewMessages(state.getConnectedUser());
         //System.out.println(chat.getNewMessages());
     }
 
 
-
+    public void removeAllNewMessages() throws NoUserConnected, UserDoesntExist {
+        chatService.removeAllNewMessages();
+    }
 }

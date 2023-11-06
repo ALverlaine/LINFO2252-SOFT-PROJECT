@@ -1,6 +1,8 @@
 package State.Views;
 
 import State.Controllers.MenuController;
+import State.Exceptions.NoUserConnected;
+import State.Exceptions.UserDoesntExist;
 import State.Features.Feature;
 import State.Features.FeatureName;
 
@@ -23,7 +25,7 @@ public class MenuView extends AbstractView {
                 int command = Integer.parseInt(scanner.nextLine());
                 controller.parseInput(command);
             }
-            catch (NumberFormatException e) {
+            catch (NumberFormatException | NoUserConnected | UserDoesntExist e) {
                 scanner = new Scanner(System.in);
             }
         }
@@ -35,10 +37,11 @@ public class MenuView extends AbstractView {
                 """
                         What do you wish to do?\s
                         (1) View your chats\s
-                        (2) Activate a feature\s
-                        (3) Deactivate a feature\s
-                        (4) Log out\s
-                        (5) Exit\s
+                        (2) New message\s
+                        (3) Activate a feature\s
+                        (4) Deactivate a feature\s
+                        (5) Log out\s
+                        (6) Exit\s
                         Enter your choice: """;
         System.out.println(output);
     }

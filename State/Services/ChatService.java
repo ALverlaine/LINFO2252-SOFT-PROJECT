@@ -5,9 +5,12 @@ import State.Exceptions.HasNoChat;
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
 import State.Models.Chat;
+import State.Models.Message;
 import State.State;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -84,5 +87,19 @@ public class ChatService {
     public Chat getSelectedChat() {
         return selectedChat;
     }
+    public List<Message> getListNewMessage(String username) throws NoUserConnected, UserDoesntExist {
+        List<Message> messages = new ArrayList<>();
+        Map<String, Chat> userChats = getUserChats(state.getConnectedUserName());
+        for (String user : userChats.keySet()) {
+            messages.addAll(userChats.get(user).getNewMessages(state.getConnectedUser()));
+        }
+        return messages;
+    }
 
+    public void removeAllNewMessages() throws NoUserConnected, UserDoesntExist {
+        Map<String, Chat> userChats = getUserChats(state.getConnectedUserName());
+        for (String user : userChats.keySet()) {
+            userChats.get(user).removeAllNewMessages(state.getConnectedUser());
+        }
+    }
 }
