@@ -22,7 +22,6 @@ Activate a feature
 Deactivate a feature
 
 Activating a feature will display additional infos in the screen.
-We have implemented two optional features (beware, the sdk might be bugged and show the features inversed, 
-to select the "STATUS" feature, press 1, to select the "RESEARCH" feature, press 2), research and status.
+We have implemented two optional features, research and status.
 With status, you can see the status of your contacts when you view your chats.
 With research, you'll be able to search for a substring in all the messages of a chat with a user.
