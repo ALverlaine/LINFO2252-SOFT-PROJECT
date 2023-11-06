@@ -24,8 +24,14 @@ public class Chat {
         return Collections.unmodifiableList(Arrays.asList(user1, user2));
     }
 
-    public Message findMessage(String messageToFind) throws NoMessagesFound {
-        return null;
+    public List<Message> findMessage(String messageToFind) {
+        List<Message> foundMessages = new ArrayList<>();
+        for (Message message: messageList) {
+            if (message.getContent().contains(messageToFind)) {
+                foundMessages.add(message);
+            }
+        }
+        return foundMessages;
     }
 
     public void addMessage(Message message) {

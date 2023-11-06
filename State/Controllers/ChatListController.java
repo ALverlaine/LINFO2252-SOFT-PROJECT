@@ -4,6 +4,7 @@ import State.Exceptions.AlreadyHasChat;
 import State.Exceptions.HasNoChat;
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
+import State.Services.FeatureService;
 import State.Models.Chat;
 import State.Services.ChatService;
 import State.Views.ChatListView;
@@ -14,10 +15,14 @@ public class ChatListController extends AbstractController {
     private Map<String, Chat> chats;
     private ChatListView view;
     private ChatService chatService = ChatService.getInstance();
+    private FeatureService featureService = FeatureService.getInstance();
 
-    public ChatListController(ChatListView view) throws NoUserConnected, UserDoesntExist {
+    public ChatListController(ChatListView view){
         this.view = view;
-        this.chats = chatService.getUserChats(state.getConnectedUserName());
+        try {
+            this.chats = chatService.getUserChats(state.getConnectedUserName());
+        }
+        catch (NoUserConnected | UserDoesntExist ignored) {}
     }
 
 
@@ -73,6 +78,14 @@ public class ChatListController extends AbstractController {
             try { chatService.removeChat(receiver); }
             catch (HasNoChat e) {view.hasNoChat(receiver);}
         }
+    }
+
+    public boolean statusActivated() {
+        return featureService.statusActivated();
+    }
+
+    public String getStatus(String username) {
+        return featureService.getUserStatus(username);
     }
 
     public Map<String, Chat> getChats() {

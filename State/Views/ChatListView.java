@@ -6,6 +6,7 @@ import State.Exceptions.UserDoesntExist;
 import State.Models.Chat;
 import State.Services.ChatService;
 
+import java.awt.*;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class ChatListView extends AbstractView {
 
     private final ChatListController controller;
     private ChatService chatService = ChatService.getInstance();
-    public ChatListView(AbstractView previousView) throws NoUserConnected, UserDoesntExist {
+    public ChatListView(AbstractView previousView){
         super(previousView);
         this.controller = new ChatListController(this);
     }
@@ -63,13 +64,21 @@ public class ChatListView extends AbstractView {
     public String selectChat() {
         System.out.print("Enter the name of the user you want:\n");
         return scanner.nextLine();
+    }
 
+    @Override
+    public void goBack() {
+        nextView = new MenuView(null);
+        exit = true;
     }
 
     public void addAllChats(Map<String, Chat> chats, StringBuilder chatsOutput) {
         int i = 1;
         for (String user : chats.keySet()) {
-            chatsOutput.append(i).append(". ").append(user).append("\n");
+            String userString = user;
+            if (controller.statusActivated())
+                userString = user + " - Status: " + controller.getStatus(user);
+            chatsOutput.append(i).append(". ").append(userString).append("\n");
             i++;
         }
     }

@@ -3,10 +3,13 @@ package State;
 import State.Controllers.AbstractController;
 import State.Exceptions.NoUserConnected;
 import State.Exceptions.UserDoesntExist;
+import State.Features.Feature;
+import State.Features.FeatureName;
+import State.Features.Research;
+import State.Features.Status;
 import State.Models.User;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 
 public class State {
 
@@ -18,12 +21,25 @@ public class State {
     private String inputCMD;
     private String inputArgs;
 
+    private Map<FeatureName, Feature> features;
+
     private State() {
+        createFeatures();
     }
 
     public static State getInstance() {
         if (instance == null) instance = new State();
         return instance;
+    }
+
+    private void createFeatures() {
+        features = new HashMap<>();
+        features.put(FeatureName.Status, new Status());
+        features.put(FeatureName.Research, new Research());
+    }
+
+    public Map<FeatureName, Feature> getFeatures() {
+        return new HashMap<>(features);
     }
 
     public Map<String, User> getUsers() {

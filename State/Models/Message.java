@@ -17,6 +17,9 @@ public class Message {
         this.date = date;
     }
 
+    public String getContent() {
+        return content;
+    }
     @Override
     public String toString () {
         return date + "\n" + sender.asMessageString() + "Content: " + content + "\n";

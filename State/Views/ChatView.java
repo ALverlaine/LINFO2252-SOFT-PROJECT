@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class ChatView extends AbstractView {
     private final ChatController controller;
     Scanner scanner = new Scanner(System.in);
+
     public ChatView(AbstractView previousView) {
         super(previousView);
         this.controller = new ChatController(this);
@@ -66,14 +67,44 @@ public class ChatView extends AbstractView {
     }
 
     public void displayOptions() {
-        System.out.println("""
-                Do you want to :\s
-                 (1) Send message\s
-                 (2) See all messages\s
-                 (3) See new messages\s
-                 (4) Go back\s
-                 (5) Exit\s
-                 Enter the number you want to select:  """);
+        if (!controller.canResearch()) {
+            System.out.println("""
+                    Do you want to :\s
+                     (1) Send message\s
+                     (2) See all messages\s
+                     (3) See new messages\s
+                     (4) Go back\s
+                     (5) Exit\s
+                     Enter the number you want to select:  """);
+        }
+        else {
+            System.out.println("""
+                    Do you want to :\s
+                     (1) Send message\s
+                     (2) See all messages\s
+                     (3) See new messages\s
+                     (4) Go back\s
+                     (5) Exit\s
+                     (6) Research a message\s
+                     Enter the number you want to select:  """);
 
+        }
+    }
+
+
+    public String enterMessageToSearch() {
+        System.out.print("Enter the content of the message you want to find: ");
+        return scanner.nextLine();
+    }
+
+    public void displayMessages(List<Message> messages) {
+        if (messages.isEmpty()) {
+            System.out.println("No messages found");
+        }
+        else {
+            for (Message message: messages) {
+                System.out.println(message);
+            }
+        }
     }
 }

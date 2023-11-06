@@ -1,10 +1,14 @@
 package State.Controllers;
 
 import State.Exceptions.NoUserConnected;
+import State.Exceptions.UserDoesntExist;
+import State.Features.FeatureName;
+import State.Features.Status;
 import State.Models.Chat;
 import State.Models.Message;
 import State.Models.User;
 import State.Services.ChatService;
+import State.Services.FeatureService;
 import State.Views.ChatView;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +23,7 @@ public class ChatController extends AbstractController {
     private final ChatView view;
     private Chat chat;
     private ChatService chatService = ChatService.getInstance();
+    private FeatureService featureService = FeatureService.getInstance();
 
     public ChatController(ChatView view) {
         this.view = view;
@@ -33,6 +38,7 @@ public class ChatController extends AbstractController {
         final int SEE_NEW = 3;
         final int BACK = 4;
         final int EXIT = 5;
+        final int RESEARCH = 6;
 
         switch (input) {
             case SEND -> view.sendMessage();
@@ -40,6 +46,7 @@ public class ChatController extends AbstractController {
             case SEE_NEW -> view.displayNewMessage(chat.getNewMessages(state.getConnectedUser()));
             case BACK -> view.goBack();
             case EXIT -> view.exit();
+            case RESEARCH -> researchMessages();
             default -> view.inputNotRecognized();
         }
     }
@@ -61,6 +68,18 @@ public class ChatController extends AbstractController {
             view.displayNewMessageAfterSend(message);
         }catch (Exception ignored){}
 
+    }
+
+    public void researchMessages() {
+        if (canResearch()) {
+            view.displayMessages(
+                    chat.findMessage(
+                            view.enterMessageToSearch()));
+        }
+    }
+
+    public boolean canResearch() {
+        return featureService.researchActivated();
     }
 
     public void removeNewMessages() throws NoUserConnected {

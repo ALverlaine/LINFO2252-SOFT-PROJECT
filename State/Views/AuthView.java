@@ -72,9 +72,7 @@ public class AuthView extends AbstractView {
 
     public void authSuccessful() {
         exit = true;
-        try {
-            nextView = new ChatListView(this);
-        } catch (NoUserConnected | UserDoesntExist ignored) {}
+        nextView = new MenuView(this);
         System.out.println("You are now connected!");
     }
 
