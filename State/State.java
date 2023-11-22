@@ -39,12 +39,12 @@ public class State {
         features.put(FeatureName.Research, new Research());
     }
 
-    public Map<FeatureName, Feature> getFeatures() {
+    public TreeMap<FeatureName, Feature> getFeatures() {
 
         Map<FeatureName, Feature> userFeatures = new LinkedHashMap<FeatureName, Feature>();
         features.put(FeatureName.Status, new Status());
         features.put(FeatureName.Research, new Research());
-        return new HashMap<>(userFeatures);
+        return new TreeMap<>(userFeatures);
     }
 
     public Map<String, User> getUsers() {

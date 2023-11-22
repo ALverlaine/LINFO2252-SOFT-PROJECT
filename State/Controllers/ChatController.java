@@ -28,8 +28,7 @@ public class ChatController extends AbstractController {
     public ChatController(ChatView view) {
         this.view = view;
         this.chat = chatService.getSelectedChat();
-        if(chat != null) view.displayAllMessages(chat.getMessages());
-        else System.out.println("There is no chat");
+
     }
 
     public void parseInput(int input) throws NoUserConnected {
