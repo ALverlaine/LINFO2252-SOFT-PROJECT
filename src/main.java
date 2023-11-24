@@ -6,10 +6,13 @@ import Views.ViewsController;
 import Utils.AppState;
 import Features.Theme;
 
+import java.time.LocalTime;
+
 public class main {
     public static void main(String[] args) throws NoUserConnected, UserDoesntExist, AlreadyHasChat {
         AppState appState = AppState.getInstance();
-        Theme.determineBackgroundColor();
+        LocalTime currentTime = LocalTime.now();
+        Theme.determineBackgroundColor(currentTime);
         Database.populateUsersDB(appState);
         Database.populateChatsDB(appState);
         ViewsController view = new ViewsController();

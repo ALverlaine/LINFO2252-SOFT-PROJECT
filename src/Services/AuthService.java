@@ -12,7 +12,7 @@ import Utils.AppState;
 public class AuthService {
 
     private static AuthService instance;
-
+    private AppState appState = AppState.getInstance();
     private AuthService() {}
 
     public static AuthService getInstance() {
@@ -20,19 +20,21 @@ public class AuthService {
         return instance;
     }
 
-    private final AppState appState = AppState.getInstance();
-
-    public User login(String username, String password) throws UserDoesntExist, IncorrectPassword {
+    public void login(String username, String password) throws UserDoesntExist, IncorrectPassword {
         User user = appState.getUser(username);
-        if (Objects.equals(password, user.getPassword())) return user;
+        if (Objects.equals(password, user.getPassword()))
+        {
+            appState.addUser(user);
+            appState.setConnectedUser(user);
+        }
         else throw new IncorrectPassword();
     }
 
-    public User register(String username, String password) throws UserExists {
+    public void register(String username, String password) throws UserExists {
         if (appState.userExists(username)) throw new UserExists();
         User user = new User(username, password);
         appState.addUser(user);
-        return user;
+        appState.setConnectedUser(user);
     }
 
 }

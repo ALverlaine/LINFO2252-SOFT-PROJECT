@@ -1,7 +1,7 @@
 package Features;
 
 public class Status extends Feature {
-    enum Activity {
+    public enum Activity {
         Online,
         Offline;
     }

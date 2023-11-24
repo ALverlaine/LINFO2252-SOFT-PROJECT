@@ -5,11 +5,10 @@ public class Theme extends Feature {
     public static String BG;
 
     public static final String RESET = "\033[0m";  // Text Reset
-    private static final String BLACK_BACKGROUND = "\033[40m";  // BLACK
-    private static final String WHITE_BACKGROUND = "\033[47m";  // WHITE
+    public static final String BLACK_BACKGROUND = "\033[40m";  // BLACK
+    public static final String WHITE_BACKGROUND = "\033[47m";  // WHITE
 
-    public static void determineBackgroundColor() {
-        LocalTime currentTime = LocalTime.now();
+    public static void determineBackgroundColor(LocalTime currentTime) {
         int startHour = 10;
         int endHour = 17;
 

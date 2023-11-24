@@ -35,9 +35,7 @@ public class AuthController extends AbstractController {
 
     public void login(String username, String password) {
         try {
-            User user = authService.login(username, password);
-            state.addUser(user);
-            state.setConnectedUser(user);
+            authService.login(username, password);
             view.authSuccessful();
         }
         catch (UserDoesntExist e1) {
@@ -52,9 +50,7 @@ public class AuthController extends AbstractController {
 
     public void register(String username, String password){
         try {
-            User user = authService.register(username, password);
-            state.addUser(user);
-            state.setConnectedUser(user);
+            authService.register(username, password);
             view.authSuccessful();
         }
         catch ( UserExists e) {

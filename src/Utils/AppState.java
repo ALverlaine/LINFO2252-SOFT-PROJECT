@@ -12,7 +12,7 @@ public class AppState {
 
     private static AppState instance = null;
     private Map<String, User> users = new HashMap<>();
-    public User connectedUser;
+    public User connectedUser = null;
 
 
     private AppState() {

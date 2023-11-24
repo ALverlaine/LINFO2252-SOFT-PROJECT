@@ -35,7 +35,7 @@ public class MenuView extends AbstractView {
     }
 
 
-    protected List<String> getMenuOptions() {
+    public List<String> getMenuOptions() {
         List<String> options = new ArrayList<>(List.of(
                 "View new message",
                 "Activate a feature",

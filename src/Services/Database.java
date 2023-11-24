@@ -48,6 +48,8 @@ public class Database {
         Message message3 = new Message(appState.getConnectedUser(), alex, "Hello, fine and you ?", "2021-05-05 12:20:00");
         chat1.addMessage(message3);
 
+        appState.setConnectedUser(null);
+
     }
 
 }
