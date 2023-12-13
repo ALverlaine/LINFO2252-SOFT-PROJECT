@@ -9,21 +9,18 @@ import Features.Feature;
 import Features.FeatureName;
 import Features.Status;
 import Features.Theme;
+import Models.Message;
 import Models.User;
 import Services.AuthService;
 import Services.Database;
 import Services.FeatureService;
 import Utils.AppState;
-import Views.ChatView;
-import Views.MenuView;
+import Views.MenuCLIView;
 import org.junit.jupiter.api.*;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
 
 import java.time.Clock;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.TreeMap;
@@ -55,11 +52,12 @@ public class FeatureActivationTest {
     public void logout() {
         appState.setConnectedUser(null);
     }
+
     @Test
     @DisplayName("Test getMenuOptions before and after starting to drive")
-    public void drivingTest(){
+    public void testDriving(){
 
-        MenuView menu = new MenuView(null);
+        MenuCLIView menu = new MenuCLIView(null);
         List<String> options = menu.getMenuOptions();
         assertEquals(5, options.size());
         featureService.changeFeatureState(FeatureName.Driving.ordinal() + 1, true);
@@ -69,7 +67,7 @@ public class FeatureActivationTest {
 
     @Test
     @DisplayName("Test online and not connected status")
-    public void goOnlineTest() throws UserDoesntExist {
+    public void testGoOnline() throws UserDoesntExist {
         User user = appState.getUser("kim");
         TreeMap<FeatureName, Feature> features = user.getFeatures();
         Status status = (Status) features.get(FeatureName.Status);
@@ -98,4 +96,21 @@ public class FeatureActivationTest {
 
         assertEquals(Theme.BG, Theme.BLACK_BACKGROUND);
     }
+
+    @Test
+    @DisplayName("Test link protection")
+    public void testLinkProtection() {
+        User user = new User("a", "b");
+        User user2 = new User("c", "d");
+        Message message = new Message(user, user2, "www.google.com https://google.com", "now");
+        boolean containsURL = message.extractUrls();
+
+        assertTrue(containsURL, "No output was produced.");
+        message = new Message(user, user2, "a", "now");
+        containsURL = message.extractUrls();
+
+        assertFalse(containsURL, "A link was found");
+
+    }
+
 }

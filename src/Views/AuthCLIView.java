@@ -1,28 +1,29 @@
 package Views;
 
-import Controllers.AuthController;
+import CliControllers.CliAuthController;
 import Exceptions.IncorrectPassword;
-import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Features.Theme;
-import Models.User;
+import ViewsAbstract.IAuthView;
+import ViewsAbstract.AbstractCLIView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class AuthView extends AbstractView {
 
-    private final AuthController controller;
+public class AuthCLIView extends AbstractCLIView implements IAuthView {
 
-    public AuthView(AbstractView previousView) {
+    private final CliAuthController controller;
+
+    public AuthCLIView(AbstractCLIView previousView) {
         super(previousView);
-        controller = new AuthController(this);
+        controller = new CliAuthController(this);
     }
 
     @Override
-    public AbstractView run() {
+    public AbstractCLIView run() {
         controller.reset();
         previousView = this;
         while (!exit) {
@@ -74,21 +75,15 @@ public class AuthView extends AbstractView {
 
     public void authSuccessful() {
         exit = true;
-        nextView = new MenuView(this);
+        nextView = new MenuCLIView(this);
         System.out.println(Theme.BG + "You are now connected!" );
     }
 
-    public void loginUnsuccessful(IncorrectPassword e) {
-        System.out.println(Theme.BG + "Wrong password!" );
+    @Override
+    public void authError(Exception e) {
+        System.out.println(Theme.BG + "Error logging you in" );
     }
 
-    public void loginUnsuccessful(UserDoesntExist e) {
-        System.out.println(Theme.BG +"The username doesn't exist!" );
-    }
-
-    public void registerUnsuccessful() {
-        System.out.println(Theme.BG + "The user already exists!" );
-    }
 
     public void exit() {
         System.exit(0);

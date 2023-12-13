@@ -1,4 +1,4 @@
-package Views;
+package ViewsAbstract;
 
 import Exceptions.NoUserConnected;
 import Features.Theme;
@@ -6,18 +6,18 @@ import Features.Theme;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class AbstractView {
+public abstract class AbstractCLIView  {
 
-    Scanner scanner = new Scanner(System.in);
-    AbstractView previousView;
-    AbstractView nextView;
+    protected Scanner scanner = new Scanner(System.in);
+    protected AbstractCLIView previousView;
+    protected AbstractCLIView nextView;
     protected boolean exit = false;
 
-    public AbstractView(AbstractView previousView) {
+    public AbstractCLIView(AbstractCLIView previousView) {
         this.previousView = previousView;
     }
 
-    public abstract AbstractView run() throws NoUserConnected;
+    public abstract AbstractCLIView run() throws NoUserConnected;
 
     public void clearAll() {
         System.out.print("\033[H\033[2J");
@@ -29,7 +29,7 @@ public abstract class AbstractView {
         clearAll();
     }
 
-    public void setPreviousView(AbstractView previousView) {
+    public void setPreviousView(AbstractCLIView previousView) {
         this.previousView = previousView;
     }
 

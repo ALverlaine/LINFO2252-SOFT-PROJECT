@@ -2,7 +2,8 @@ import Exceptions.AlreadyHasChat;
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Services.Database;
-import Views.ViewsController;
+import Utils.GuiAppState;
+import Views.ViewsCLIController;
 import Utils.AppState;
 import Features.Theme;
 
@@ -15,7 +16,8 @@ public class main {
         Theme.determineBackgroundColor(currentTime);
         Database.populateUsersDB(appState);
         Database.populateChatsDB(appState);
-        ViewsController view = new ViewsController();
-        view.run();
+        ViewsCLIController view = new ViewsCLIController();
+        //view.run();
+        GuiAppState.main(args);
     }
 }

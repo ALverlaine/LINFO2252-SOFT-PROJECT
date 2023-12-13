@@ -1,4 +1,4 @@
-package Controllers;
+package ControllersAbstract;
 
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class ChatController {
+public class AbstractChatController {
 
     private final IChatView view;
     protected Chat chat;
@@ -24,7 +24,7 @@ public class ChatController {
     protected FeatureService featureService = FeatureService.getInstance();
     protected AppState state = AppState.getInstance();
 
-    public ChatController(IChatView view) {
+    public AbstractChatController(IChatView view) {
         this.view = view;
         this.chat = chatService.getSelectedChat();
     }
@@ -36,8 +36,6 @@ public class ChatController {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss "); // Customize the format as needed
         String formattedDate = dateFormat.format(date);
-
-
 
         User receiver = users.get(0).equals(sender) ? users.get(1) : users.get(0);
         Message message = new Message(sender, receiver, content, formattedDate);
@@ -61,7 +59,6 @@ public class ChatController {
     public boolean canResearch() {
         return featureService.researchActivated();
     }
-
 
     public boolean hasLinkProtection() {
         return featureService.featureIsActivated(FeatureName.Link_Protection);

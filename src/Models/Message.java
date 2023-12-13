@@ -20,6 +20,13 @@ public class Message {
         this.date = date;
     }
 
+    public String getSender() {
+        return sender.getName();
+    }
+
+    public String getDate() {
+        return date;
+    }
     public String getContent() {
         return content;
     }
@@ -29,7 +36,7 @@ public class Message {
     }
 
     //https://stackoverflow.com/questions/5713558/detect-and-extract-url-from-a-string
-    public void extractUrls()
+    public boolean extractUrls()
     {
         List<String> containedUrls = new ArrayList<String>();
         String urlRegex =   "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)"
@@ -49,6 +56,8 @@ public class Message {
             for (String url : containedUrls) {
                 System.out.println(url);
             }
+            return true;
         }
+    return false;
     }
 }

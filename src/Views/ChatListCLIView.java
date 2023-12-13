@@ -1,29 +1,30 @@
 package Views;
 
+import CliControllers.CliChatListController;
 import Controllers.ChatListController;
-import Exceptions.NoUserConnected;
-import Exceptions.UserDoesntExist;
+import ControllersAbstract.AbstractChatListController;
 import Features.Theme;
 import Models.Chat;
 import Services.ChatService;
+import ViewsAbstract.AbstractCLIView;
+import ViewsAbstract.IChatListView;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ChatListView extends AbstractView {
+public class ChatListCLIView extends AbstractCLIView implements IChatListView {
 
-    private final ChatListController controller;
+    private final CliChatListController controller;
     private ChatService chatService = ChatService.getInstance();
-    public ChatListView(AbstractView previousView){
+    public ChatListCLIView(AbstractCLIView previousView){
         super(previousView);
-        this.controller = new ChatListController(this);
+        this.controller = new CliChatListController(this);
     }
 
     @Override
-    public AbstractView run() {
+    public AbstractCLIView run() {
         while (!exit) {
             int command;
             clearAll();
@@ -52,7 +53,7 @@ public class ChatListView extends AbstractView {
     }
 
     public void goToChat() {
-        nextView = new ChatView(this);
+        nextView = new ChatCLIView(this);
         exit = true;
     }
 
@@ -63,7 +64,7 @@ public class ChatListView extends AbstractView {
 
     @Override
     public void goBack() {
-        nextView = new MenuView(null);
+        nextView = new MenuCLIView(null);
         exit = true;
     }
 

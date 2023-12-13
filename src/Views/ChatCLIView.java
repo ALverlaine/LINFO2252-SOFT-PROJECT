@@ -1,26 +1,29 @@
 package Views;
 
+import CliControllers.CliChatController;
+import CliControllers.CliChatListController;
 import Controllers.ChatController;
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Models.Message;
-import Models.User;
+import ViewsAbstract.AbstractCLIView;
+import ViewsAbstract.IChatView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ChatView extends AbstractView {
-    private final ChatController controller;
+public class ChatCLIView extends AbstractCLIView implements IChatView {
+    private final CliChatController controller;
     Scanner scanner = new Scanner(System.in);
 
-    public ChatView(AbstractView previousView) {
+    public ChatCLIView(AbstractCLIView previousView) {
         super(previousView);
-        this.controller = new ChatController(this);
+        this.controller = new CliChatController(this);
     }
 
     @Override
-    public AbstractView run() {
+    public AbstractCLIView run() {
         while (!exit) {
             displayOptions();
             try {

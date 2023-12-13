@@ -1,24 +1,20 @@
 package Controllers;
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
-import Features.Feature;
 import Features.FeatureName;
-import Models.User;
 import Services.FeatureService;
 import Utils.AppState;
-import Views.ChatView;
-import Views.MenuView;
+import Views.ChatCLIView;
+import Views.MenuCLIView;
 
-import java.util.Map;
-
-public class MenuController extends AbstractController {
+public class MenuController {
     private AppState appState = AppState.getInstance();
-    private MenuView view;
-    private ChatView chatView;
+    private MenuCLIView view;
+    private ChatCLIView chatView;
     private FeatureService featureService = FeatureService.getInstance();
-    public MenuController(MenuView view) {
+    public MenuController(MenuCLIView view) {
         this.view = view;
-        this.chatView = new ChatView(view);
+        this.chatView = new ChatCLIView(view);
     }
 
     public void parseInput(int input) throws NoUserConnected, UserDoesntExist {

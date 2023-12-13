@@ -1,6 +1,5 @@
 package Utils;
 
-import Controllers.AbstractController;
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Features.*;
@@ -59,6 +58,10 @@ public class AppState {
     }
 
     public boolean userExists(String username) {
+        for (Map.Entry<String, User> user: users.entrySet()) {
+            System.out.println(users.get("kim") == null);
+            System.out.println(user.getKey());
+        }
         return users.get(username) != null;
     }
 

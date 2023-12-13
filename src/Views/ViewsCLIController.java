@@ -1,18 +1,19 @@
 package Views;
 
 import Exceptions.NoUserConnected;
+import ViewsAbstract.AbstractCLIView;
 
 import java.util.Scanner;
 
-public class ViewsController {
+public class ViewsCLIController {
     Scanner scanner = new Scanner(System.in);
 
-    public ViewsController() {
+    public ViewsCLIController() {
     }
 
 
     public void run() throws NoUserConnected {
-        AbstractView view = new AuthView(null);
+        AbstractCLIView view = new AuthCLIView(null);
         while (true) {
             view = view.run();
         }

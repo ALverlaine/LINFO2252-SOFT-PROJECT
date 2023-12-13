@@ -5,22 +5,23 @@ import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Features.Feature;
 import Features.FeatureName;
+import ViewsAbstract.AbstractCLIView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class MenuView extends AbstractView {
+public class MenuCLIView extends AbstractCLIView {
     private MenuController controller;
 
-    public MenuView(AbstractView previousView) {
+    public MenuCLIView(AbstractCLIView previousView) {
         super(previousView);
         this.controller = new MenuController(this);
     }
 
     @Override
-    public AbstractView run() {
+    public AbstractCLIView run() {
         while (!exit) {
             displayOptions();
             try {
@@ -48,11 +49,11 @@ public class MenuView extends AbstractView {
 
     public void goToChats() {
         exit = true;
-        nextView = new ChatListView(this);
+        nextView = new ChatListCLIView(this);
     }
 
     public void logOut() {
-        nextView = new AuthView(this);
+        nextView = new AuthCLIView(this);
         controller.logout();
         exit = true;
     }
