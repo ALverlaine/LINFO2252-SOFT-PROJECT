@@ -9,7 +9,7 @@
 <VBox spacing="8" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.GuiMenuViewController">
     <HBox fx:id="options" styleClass="section-subtitle-box" spacing="120" alignment="CENTER_LEFT">
         <Text  styleClass="section-title" text="Features"/>
-        <Button styleClass="btn" text="Logout" onAction="#logout"/>
+        <Button styleClass="btn-warning" text="Logout" onAction="#logout"/>
         <Button styleClass="btn" text="Go to chats" onAction="#goToChats"/>
     </HBox>
     <!--    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="section-content-box">-->
