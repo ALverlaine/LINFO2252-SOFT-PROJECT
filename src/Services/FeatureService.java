@@ -58,6 +58,12 @@ public class FeatureService {
         else feature.deactivate();
     }
 
+    public boolean changeFeatureState(FeatureName featureName) {
+        Feature feature = getFeatures().get(featureName);
+        feature.changeStatus();
+        return feature.isActivated();
+    }
+
     public void logout() {
         Map<FeatureName, Feature> features = getFeatures();
         for (Feature feature: features.values()) feature.deactivate();

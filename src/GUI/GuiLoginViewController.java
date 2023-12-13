@@ -45,7 +45,7 @@ public class GuiLoginViewController extends AbstractViewController implements In
     @Override
     public void authSuccessful() {
         clearForm();
-        switchView(EPages.CHAT_LIST);
+        switchView(EPages.MENU);
     }
 
     @Override

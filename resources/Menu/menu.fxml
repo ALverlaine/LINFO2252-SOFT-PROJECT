@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+
+<VBox spacing="8" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.GuiMenuViewController">
+    <HBox fx:id="options" styleClass="section-subtitle-box" spacing="120" alignment="CENTER_LEFT">
+        <Text  styleClass="section-title" text="Features"/>
+        <Button styleClass="btn" text="Logout" onAction="#logout"/>
+        <Button styleClass="btn" text="Go to chats" onAction="#goToChats"/>
+    </HBox>
+    <!--    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="section-content-box">-->
+    <HBox fx:id="features" spacing="10" styleClass="section-content-box">
+        <!-- decks will goes here (checkout controller) -->
+    </HBox>
+    <!--    </ScrollPane>-->
+    <stylesheets>
+        <URL value="@menu.css" />
+    </stylesheets>
+</VBox>

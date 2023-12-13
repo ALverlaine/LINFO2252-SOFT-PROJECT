@@ -6,12 +6,14 @@
 <?import javafx.geometry.Insets?>
 <VBox style="-fx-background-color: #5b2529;" spacing="5"  xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.GuiSingleChatViewController">
     <children>
-        <ScrollPane fx:id="scrollPane" prefHeight="265.0" prefWidth="592.0" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+        <ScrollPane styleClass="-fx-background: #5b2529; -fx-background-color: #5b2529;" fx:id="scrollPane" prefHeight="265.0" prefWidth="592.0" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
             <content>
-                <VBox fx:id="chatLog"/>
+                <VBox fx:id="chatLog" styleClass="-fx-background: #5b2529;"/>
             </content>
         </ScrollPane>
         <HBox spacing="5">
+            <Button fx:id="exitButton" onAction="#goBack" text="Go back" style="-fx-background-color: #FF0000" prefHeight="47.0" minWidth="52.0" />
+            <Button fx:id="searchButton" onAction="#searchMessage" text="Search" style="-fx-background-color: #90EE90" prefHeight="47.0" minWidth="52.0" />
             <TextArea fx:id="messageBox" onKeyPressed="#onEnterSend" prefHeight="47.0" promptText="enter message..." HBox.hgrow="ALWAYS" />
             <Button fx:id="sendButton" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" minWidth="52.0" text="Send"/>
         </HBox>

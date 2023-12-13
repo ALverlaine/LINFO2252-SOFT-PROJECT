@@ -1,6 +1,5 @@
 package Utils;
 
-import GUI.AbstractViewController;
 import GUI.EPages;
 import GuiInterfaces.Views.IAppViewController;
 import javafx.application.Application;
@@ -13,17 +12,26 @@ import javafx.stage.Window;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-public class GuiAppState extends Application implements IAppViewController {
-    public static final String cssPath = "/lightMode.css";
+public class GuiApp extends Application implements IAppViewController {
+    public static String cssPath = "/lightMode.css";
+
     private static final String APP_TITLE = "SoftwareMaintenance";
     private static final double MIN_WIDTH = 900;
     private static final double MIN_HEIGHT = 600;
+    private boolean lightMode = false;
 
+    public void setTitle(String title) {
+        primaryStage.setTitle(title);
+    }
 
     private Stage primaryStage;
 
     @Override
     public void start(Stage stage){
+        if (lightMode)
+            cssPath = "/base.css";
+        else
+            cssPath = "/lightMode.css";
         primaryStage = stage;
         handleViewChange(EPages.SIGN_IN);
         stage.setTitle(APP_TITLE);
@@ -51,7 +59,6 @@ public class GuiAppState extends Application implements IAppViewController {
                 return controllerClass.getDeclaredConstructor(IAppViewController.class).newInstance(this);
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                      | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-                System.out.println(e.getMessage() + "sioss");
                 return null;
             }
         });
@@ -71,12 +78,25 @@ public class GuiAppState extends Application implements IAppViewController {
     }
 
     private String getFxmlPathForPage(EPages page) {
-        return switch (page) {
-            case SIGN_IN -> "/Login/loginLightMode.fxml";
-            case SIGN_UP -> "/Register/register.fxml";
-            case CHAT_LIST -> "/ChatList/chatList.fxml";
-            case CHAT -> "/SingleChat/singlechat.fxml";
-            default -> throw new IllegalArgumentException("Invalid page");
-        };
+        if (lightMode)
+            return switch (page) {
+                case SIGN_IN -> "/Login/loginLightMode.fxml";
+                case SIGN_UP -> "/Register/registerLightMode.fxml";
+                case CHAT_LIST -> "/ChatList/chatListLightMode.fxml";
+                case CHAT -> "/SingleChat/singlechat.fxml";
+                case MENU -> "/Menu/menuLightMode.fxml";
+
+                default -> throw new IllegalArgumentException("Invalid page");
+            };
+        else
+            return switch (page) {
+                case SIGN_IN -> "/Login/login.fxml";
+                case SIGN_UP -> "/Register/register.fxml";
+                case CHAT_LIST -> "/ChatList/chatList.fxml";
+                case CHAT -> "/SingleChat/singlechat.fxml";
+                case MENU -> "/Menu/menu.fxml";
+
+                default -> throw new IllegalArgumentException("Invalid page");
+            };
     }
 }

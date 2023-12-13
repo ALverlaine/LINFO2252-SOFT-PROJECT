@@ -6,13 +6,16 @@ import GuiControllers.GuiAuthController;
 import GuiInterfaces.Views.IAppViewController;
 import ViewsAbstract.IAuthView;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class GuiRegisterViewController extends AbstractViewController implements IAuthView {
+public class GuiRegisterViewController extends AbstractViewController implements Initializable, IAuthView {
 
     @FXML private TextField usernameSignup;
     @FXML private PasswordField createPasswordSignup;
@@ -49,4 +52,8 @@ public class GuiRegisterViewController extends AbstractViewController implements
         showAlert(Alert.AlertType.ERROR, "There was an error registering you", "We couldn't sign you up", "");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

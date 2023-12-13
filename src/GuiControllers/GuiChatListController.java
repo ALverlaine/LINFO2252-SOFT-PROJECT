@@ -1,15 +1,21 @@
 package GuiControllers;
 
 import ControllersAbstract.AbstractChatListController;
+import Exceptions.NoUserConnected;
+import Exceptions.UserDoesntExist;
+import Features.FeatureName;
 import GUI.ChatListViewController;
 import GuiInterfaces.Controllers.IChatListGuiController;
+import GuiInterfaces.Controllers.IController;
 import GuiInterfaces.Views.IChatListViewController;
 import Models.Chat;
+import Models.Message;
 import ViewsAbstract.IChatListView;
 
+import java.util.List;
 import java.util.Map;
 
-public class GuiChatListController extends AbstractChatListController implements IChatListGuiController {
+public class GuiChatListController extends AbstractChatListController implements IController {
     private ChatListViewController view;
 
     public GuiChatListController(ChatListViewController view) {
@@ -24,6 +30,9 @@ public class GuiChatListController extends AbstractChatListController implements
             Chat userChat = chat.getValue();
             view.addChat(userChat, receiver);
         }
+        showNotifications();
+        if (featureService.featureIsActivated(FeatureName.Driving)) view.removeDrivingUI();
+        if (featureService.featureIsActivated(FeatureName.DND)) view.removeDndUI();
     }
     @Override
     public void modifyChat(String receiver, boolean isAdding) {
@@ -31,5 +40,14 @@ public class GuiChatListController extends AbstractChatListController implements
         view.addChats(chats);
     }
 
+    public void showNotifications() {
+        try {
+            List<Message> messages = super.getNewListMessage();
+            view.showNotifications(messages);
+        }
+        catch (NoUserConnected | UserDoesntExist e) {
+
+        }
+    }
 
 }

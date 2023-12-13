@@ -4,6 +4,9 @@ public abstract class Feature {
     private boolean activated = false;
     public Feature() {}
 
+    public void changeStatus() {
+        activated = !activated;
+    }
     public void activate() {
         activated = true;
     }

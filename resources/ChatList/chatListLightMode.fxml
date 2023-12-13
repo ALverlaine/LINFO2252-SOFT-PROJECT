@@ -25,6 +25,6 @@
 
     </VBox>
     <stylesheets>
-        <URL value="@chatlist.css" />
+        <URL value="@chatListLightMode.css" />
     </stylesheets>
 </VBox>

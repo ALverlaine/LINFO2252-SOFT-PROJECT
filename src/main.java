@@ -2,7 +2,7 @@ import Exceptions.AlreadyHasChat;
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Services.Database;
-import Utils.GuiAppState;
+import Utils.GuiApp;
 import Views.ViewsCLIController;
 import Utils.AppState;
 import Features.Theme;
@@ -18,6 +18,6 @@ public class main {
         Database.populateChatsDB(appState);
         ViewsCLIController view = new ViewsCLIController();
         //view.run();
-        GuiAppState.main(args);
+        GuiApp.main(args);
     }
 }

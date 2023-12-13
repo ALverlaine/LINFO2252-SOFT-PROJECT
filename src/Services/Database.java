@@ -46,8 +46,11 @@ public class Database {
         appState.setConnectedUser(appState.getUser("fra"));
 
         Message message3 = new Message(appState.getConnectedUser(), alex, "Hello, fine and you ?", "2021-05-05 12:20:00");
+        Message message4 = new Message(appState.getConnectedUser(), alex, "www.google.com", "2021-05-05 12:00:30");
+
         chat1.addMessage(message3);
 
+        chat1.addMessage(message4);
         appState.setConnectedUser(null);
 
     }

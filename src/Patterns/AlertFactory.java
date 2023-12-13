@@ -1,10 +1,9 @@
 package Patterns;
 
-import Utils.GuiAppState;
+import Utils.GuiApp;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputDialog;
+
 public class AlertFactory {
 
     /**
@@ -39,7 +38,7 @@ public class AlertFactory {
     public Alert makeBaseAlert(Alert.AlertType type) {
         Alert alert = new Alert(type);
 
-        alert.getDialogPane().getStylesheets().add(getClass().getResource(GuiAppState.cssPath).toExternalForm());
+        alert.getDialogPane().getStylesheets().add(getClass().getResource(GuiApp.cssPath).toExternalForm());
         alert.getDialogPane().getStyleClass().add("myDialog");
 
         return alert;

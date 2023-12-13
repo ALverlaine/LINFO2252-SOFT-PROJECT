@@ -5,4 +5,5 @@ public enum EPages {
     SIGN_UP,
     CHAT_LIST,
     CHAT,
+    MENU
 }

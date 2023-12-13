@@ -4,7 +4,8 @@ public enum FeatureName {
     Research,
     Status,
     Driving,
-    Link_Protection;
+    Link_Protection,
+    DND;
 
     public static FeatureName fromInt(int value) {
         for (FeatureName feature : FeatureName.values()) {

@@ -1,4 +1,4 @@
-package Controllers;
+package CliControllers;
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Features.FeatureName;
@@ -7,12 +7,12 @@ import Utils.AppState;
 import Views.ChatCLIView;
 import Views.MenuCLIView;
 
-public class MenuController {
+public class CliMenuController {
     private AppState appState = AppState.getInstance();
     private MenuCLIView view;
     private ChatCLIView chatView;
     private FeatureService featureService = FeatureService.getInstance();
-    public MenuController(MenuCLIView view) {
+    public CliMenuController(MenuCLIView view) {
         this.view = view;
         this.chatView = new ChatCLIView(view);
     }

@@ -29,6 +29,7 @@ public class AppState {
         userFeatures.put(FeatureName.Research, new Research());
         userFeatures.put(FeatureName.Driving, new Driving());
         userFeatures.put(FeatureName.Link_Protection, new Link());
+        userFeatures.put(FeatureName.DND, new DoNotDisturb());
         return new TreeMap<>(userFeatures);
     }
 
@@ -58,10 +59,6 @@ public class AppState {
     }
 
     public boolean userExists(String username) {
-        for (Map.Entry<String, User> user: users.entrySet()) {
-            System.out.println(users.get("kim") == null);
-            System.out.println(user.getKey());
-        }
         return users.get(username) != null;
     }
 

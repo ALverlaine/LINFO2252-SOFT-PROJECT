@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.MenuController;
+import CliControllers.CliMenuController;
 import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Features.Feature;
@@ -13,11 +13,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MenuCLIView extends AbstractCLIView {
-    private MenuController controller;
+    private CliMenuController controller;
 
     public MenuCLIView(AbstractCLIView previousView) {
         super(previousView);
-        this.controller = new MenuController(this);
+        this.controller = new CliMenuController(this);
     }
 
     @Override

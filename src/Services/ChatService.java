@@ -87,6 +87,7 @@ public class ChatService {
     public Chat getSelectedChat() {
         return selectedChat;
     }
+
     public List<Message> getListNewMessage(String username) throws NoUserConnected, UserDoesntExist {
         List<Message> messages = new ArrayList<>();
         Map<String, Chat> userChats = getUserChats(appState.getConnectedUserName());
@@ -94,6 +95,11 @@ public class ChatService {
             messages.addAll(userChats.get(user).getNewMessages(appState.getConnectedUser()));
         }
         return messages;
+    }
+
+    public void removeNewMessagesFrom(String user) throws NoUserConnected, UserDoesntExist {
+        List<Message> messages = getListNewMessage(appState.getConnectedUserName());
+        messages = new ArrayList<>();
     }
 
     public void removeAllNewMessages() throws NoUserConnected, UserDoesntExist {

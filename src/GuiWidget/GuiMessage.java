@@ -13,21 +13,31 @@ import java.io.IOException;
 
 public class GuiMessage extends HBox {
     private Message message;
-    @FXML
+
+
     Text messageContent;
-    public GuiMessage(Message message, boolean fromUser) throws IOException {
+
+    private TextFlow createTextFlow(Message message, boolean fromUser) {
         if (fromUser)
             setAlignment(Pos.CENTER_RIGHT);
         else
             setAlignment(Pos.CENTER_LEFT);
         Text text = new Text(message.getContent());
-        TextFlow textFlow = new TextFlow(text);
+        return new TextFlow(text);
+    }
 
-        textFlow.setStyle("-fx-background-color: rgb(233,233,235);" +
-                "-fx-background-radius: 20px");
+    public GuiMessage(Message message, boolean fromUser, boolean hasLinkProtection) {
+        TextFlow textFlow = createTextFlow(message, fromUser);
+        if (hasLinkProtection && message.extractUrls())
+            textFlow.setStyle("-fx-background-color: rgb(255,127,127);" +
+                    "-fx-background-radius: 20px");
+        else
+            textFlow.setStyle("-fx-background-color: rgb(233,233,235);" +
+                    "-fx-background-radius: 20px");
         textFlow.setPadding(new Insets(5, 10, 5, 10));
 
         getChildren().add(textFlow);
-
     }
+
+
 }

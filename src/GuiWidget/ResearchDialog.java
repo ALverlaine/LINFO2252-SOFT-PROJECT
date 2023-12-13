@@ -6,15 +6,15 @@ import javafx.scene.layout.VBox;
 
 import java.util.Objects;
 
-public class ChatCreationDialog extends Dialog<String> {
+public class ResearchDialog extends Dialog<String> {
 
-    private final TextField username = new TextField();
+    private final TextField toSearch = new TextField();
 
-    public ChatCreationDialog() {
-        Label nameLabel = new Label("New contact");
+    public ResearchDialog() {
+        Label nameLabel = new Label("Search a message");
 
         VBox vbox = new VBox(
-                nameLabel, username
+                nameLabel, toSearch
         );
 
         vbox.setSpacing( 10.0d );
@@ -27,11 +27,11 @@ public class ChatCreationDialog extends Dialog<String> {
         dp.getStylesheets().add(Objects.requireNonNull(getClass().getResource(GuiApp.cssPath)).toExternalForm());
         dp.getStyleClass().add("myDialog");
 
-        setTitle("Add a chat");
+        setTitle("Research a message");
 
         setResultConverter( this::formResult );
 
-        ButtonType bt = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
+        ButtonType bt = new ButtonType("Search", ButtonBar.ButtonData.OK_DONE);
         dp.getButtonTypes().addAll(bt, ButtonType.CANCEL);
         dp.setContent(vbox);
     }
@@ -39,7 +39,7 @@ public class ChatCreationDialog extends Dialog<String> {
     private String formResult(ButtonType bt) {
         String chatReceiver = null;
         if( bt.getButtonData() == ButtonBar.ButtonData.OK_DONE ) {
-            chatReceiver = username.getText();
+            chatReceiver = toSearch.getText();
         }
         return chatReceiver;
     }

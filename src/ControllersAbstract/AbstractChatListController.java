@@ -6,12 +6,14 @@ import Exceptions.NoUserConnected;
 import Exceptions.UserDoesntExist;
 import Features.FeatureName;
 import Models.Chat;
+import Models.Message;
 import Services.ChatService;
 import Services.FeatureService;
 import Utils.AppState;
 import Views.ChatListCLIView;
 import ViewsAbstract.IChatListView;
 
+import java.util.List;
 import java.util.Map;
 
 public class AbstractChatListController{
@@ -63,6 +65,12 @@ public class AbstractChatListController{
         }
 
     }
+
+
+    public List<Message> getNewListMessage() throws NoUserConnected, UserDoesntExist {
+        return chatService.getListNewMessage(state.getConnectedUserName());
+    }
+
 
     public boolean statusActivated() {
         return featureService.featureIsActivated(FeatureName.Status);

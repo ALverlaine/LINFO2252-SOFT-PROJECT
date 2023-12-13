@@ -3,7 +3,7 @@ package Features;
 public class Status extends Feature {
     public enum Activity {
         Online,
-        Offline;
+        Offline
     }
 
     Activity currentActivity = Activity.Offline;
@@ -16,8 +16,8 @@ public class Status extends Feature {
 
     public void goOnline() {
         currentActivity = Activity.Online;
-
     }
+
 
     public void goOffline() {
         currentActivity = Activity.Offline;

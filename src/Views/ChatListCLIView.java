@@ -1,8 +1,6 @@
 package Views;
 
 import CliControllers.CliChatListController;
-import Controllers.ChatListController;
-import ControllersAbstract.AbstractChatListController;
 import Features.Theme;
 import Models.Chat;
 import Services.ChatService;

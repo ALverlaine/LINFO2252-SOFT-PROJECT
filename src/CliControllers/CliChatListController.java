@@ -1,6 +1,5 @@
 package CliControllers;
 
-import Controllers.ChatListController;
 import ControllersAbstract.AbstractChatListController;
 import Views.ChatListCLIView;
 
